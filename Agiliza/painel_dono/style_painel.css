@@ -1,0 +1,2104 @@
+/*
+ * style_painel.css
+ * Tema: Light
+ */
+
+/* ======================================= */
+/* ---- ESTILOS GERAIS E LAYOUT DO PAINEL ---- */
+/* ======================================= */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Fundo claro */
+    color: #333; /* Texto escuro padrão */
+    
+    min-height: 100vh;
+
+}
+
+.painel-container {
+    width: 100%;
+}
+.sidebar {
+    position: fixed; /* <-- Cola a sidebar na tela */
+    top: 0;
+    left: 0;
+    height: 100vh; /* <-- Ocupa 100% da altura */
+    
+    width: 250px;
+    background-color: #ffffff;
+    /* ... (outros estilos) ... */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+.sidebar h1 {
+    color: #7E57C2; /* Roxo principal */
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar h1 span {
+    color: #333; /* Complemento em preto */
+}
+
+/* ======================================= */
+/* ---- [CORREÇÃO FINAL v3] NAVEGAÇÃO SIDEBAR ---- */
+/* ======================================= */
+
+/* O container de todos os links */
+/* O container de todos os links */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    
+    /* [A CORREÇÃO MÁGICA] */
+    flex-grow: 1;          /* Ocupa todo o espaço disponível no meio */
+    overflow-y: auto;      /* Adiciona barra de rolagem SE precisar */
+    min-height: 0;         /* Evita bugs de flexbox que estouram a tela */
+    
+    margin-bottom: 1rem;   /* Dá um respiro antes do botão Sair */
+    padding-right: 5px;    /* Evita que o scroll cole no texto */
+}
+
+/* (Bônus) Deixa a barra de rolagem bonitinha e fina */
+.sidebar-nav::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+    background: transparent; 
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background-color: #ddd; 
+    border-radius: 10px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+    background-color: #7E57C2; 
+}
+
+/*
+ * Links NORMAIS (Inativos) - A regra geral
+ * [A CORREÇÃO]: Adicionamos :link e :visited 
+ * para forçar a cor cinza sobre o roxo padrão do navegador.
+*/
+.sidebar .sidebar-nav a,
+.sidebar .sidebar-nav a:link,
+.sidebar .sidebar-nav a:visited {
+    display: block;
+    text-decoration: none;
+    color: #555; /* Texto Inativo Cinza */
+    background-color: transparent;
+    font-weight: normal;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ícones NORMAIS (Inativos) */
+.sidebar .sidebar-nav a i,
+.sidebar .sidebar-nav a:link i,
+.sidebar .sidebar-nav a:visited i {
+    color: #555; /* Ícone Inativo Cinza */
+    margin-right: 0.5rem;
+    width: 1.2em;
+    transition: color 0.3s ease;
+}
+
+/* Estado ATIVO (para QUALQUER link) */
+.sidebar .sidebar-nav a.active,
+.sidebar .sidebar-nav a.active:link,
+.sidebar .sidebar-nav a.active:visited {
+    background-color: #7E57C2;
+    color: #ffffff !important; /* Força texto branco */
+    font-weight: bold;
+}
+.sidebar .sidebar-nav a.active i {
+    color: #ffffff !important; /* Força ícone branco */
+}
+
+/* Estado HOVER (para QUALQUER link) */
+.sidebar .sidebar-nav a:hover {
+    background-color: #7E57C2;
+    color: #ffffff !important; /* Força texto branco */
+    font-weight: bold;
+}
+.sidebar .sidebar-nav a:hover i {
+    color: #ffffff !important; /* Força ícone branco */
+}
+
+/* --- REGRAS ESPECIAIS DE LAYOUT PARA O LINK EXTRA (PORTFÓLIO) --- */
+.sidebar .sidebar-nav a.link-extra {
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+/* [A CORREÇÃO FINAL] 
+  Força o link-extra (e seu ícone) a ser cinza 
+  QUANDO ele NÃO ESTIVER ativo.
+  Isso derrota o a:visited roxo do navegador.
+*/
+.sidebar .sidebar-nav a.link-extra:not(.active) {
+    color: #555 !important; /* Força o texto cinza */
+}
+.sidebar .sidebar-nav a.link-extra:not(.active) i {
+    color: #555 !important; /* Força o ícone cinza */
+}
+
+.sidebar-logout {
+    margin-top: auto; /* Empurra para o final */
+}
+
+.sidebar-logout a {
+    display: block; /* <-- A CORREÇÃO (Faz o botão ocupar a largura) */
+    width: 100%;    /* <-- Garante a largura total */
+    box-sizing: border-box; /* <-- Impede o padding de quebrar o layout */
+    
+    background-color: #f8d7da; /* Vermelho claro */
+    color: #dc3545; /* Vermelho mais escuro */
+    text-align: center; /* Centraliza o TEXTO "Sair" */
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold; /* Deixa o texto mais visível */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-logout a:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.main-content {
+    margin-left: 250px; /* <-- A LARGURA EXATA DA SUA SIDEBAR */
+    
+    flex-grow: 1; 
+    padding: 30px;
+    background-color: #f0f2f5;
+    min-height: 100vh; /* Garante que o fundo vá até o fim */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+.main-content h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.main-content p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* ======================================= */
+/* ---- ESTILOS DOS CARDS (form-card) ---- */
+/* ======================================= */
+
+.form-card {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra mais visível */
+    margin-bottom: 20px;
+}
+
+.form-card h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="time"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc; /* Borda clara */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #333; /* Texto escuro */
+    background-color: #fdfdfd; /* Fundo quase branco */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="time"],
+.form-group input[type="date"],
+.form-group input[type="number"], /* <-- ADICIONE ESTA LINHA */
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc; /* Borda clara */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #333; /* Texto escuro */
+    background-color: #fdfdfd; /* Fundo quase branco */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ======================================= */
+/* ---- ESTILO DO UPLOAD DE ARQUIVO (TEMA CLARO CORRIGIDO) ---- */
+/* ======================================= */
+
+/* A "caixa" que simula um dropzone */
+.form-group-file {
+    position: relative;
+    width: 100%;
+    border: 2px dashed #ddd; /* Borda cinza clara tracejada */
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: #f9f9f9; /* Fundo cinza bem claro */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+.form-group-file:hover {
+    border-color: #7E57C2; /* Fica roxo */
+}
+
+/* O <input type="file"> real (FEIO), escondido */
+.file-input-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* O <label> que o usuário vê (O BOTÃO "ESCOLHER ARQUIVO") */
+.file-input-label {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    background-color: #7E57C2; /* Fundo Roxo */
+    
+    color: #ffffff !important; /* [A CORREÇÃO] Força o texto a ser branco */
+    
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.file-input-label:hover {
+    background-color: #673AB7; /* Roxo mais escuro */
+}
+
+/* O texto "Nenhum arquivo escolhido" */
+.file-input-filename {
+    display: inline-block;
+    margin-left: 1rem;
+    color: #666; /* Texto cinza (light theme) */
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Container da Pré-visualização (sua imagem atual) */
+.preview-container {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9; /* Fundo cinza claro */
+    border-radius: 6px;
+}
+.preview-container img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 6px;
+    border: 2px solid #ddd; /* Borda cinza clara */
+}
+/* Deixa a foto de perfil redondinha */
+.preview-container img.preview-perfil {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.preview-container small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #888; /* Texto cinza (light theme) */
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.file-input-label {
+    background-color: #7E57C2; /* Botão roxo */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: #673AB7; /* Roxo um pouco mais escuro */
+}
+
+.file-input-hidden {
+    display: none;
+}
+
+.file-input-filename {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form-button {
+    display: inline-block; /* Garante consistência */
+    text-decoration: none; /* Garante consistência */
+    text-align: center; /* Garante alinhamento */
+    box-sizing: border-box; /* Garante cálculo de tamanho igual */
+    
+    background-color: #7E57C2;
+    color: white;
+    padding: 12px 20px;
+    border: 1px solid #7E57C2; /* Borda da mesma cor */
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.form-button:hover {
+    background-color: #673AB7; /* Roxo mais escuro */
+    border-color: #673AB7;
+    color: #ffffff; /* [GARANTIA] Texto continua branco */
+}
+
+.preview-container {
+    margin-top: 15px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+}
+
+.preview-container img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.preview-container small {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* ---- O Botão Vazado (Preview) ---- */
+.preview-button {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 12px 20px;
+    font-weight: bold;
+    
+    background-color: transparent;
+    border: 1px solid #7E57C2;
+    color: #7E57C2; /* Texto Roxo */
+    
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Hover do Botão Vazado */
+.preview-button:hover {
+    background-color: #7E57C2; /* Fundo Roxo */
+    color: #ffffff; /* [CORREÇÃO] Texto Branco */
+}
+
+/* ======================================= */
+/* ---- ESTILOS ESPECÍFICOS DO PAINEL ---- */
+/* ======================================= */
+
+/* --- Tabela de Agenda --- */
+.tabela-agenda {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Garante borda arredondada */
+}
+
+.tabela-agenda th,
+.tabela-agenda td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Linha clara */
+    color: #333;
+}
+
+.tabela-agenda th {
+    background-color: #f5f5f5; /* Cabeçalho mais claro */
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.tabela-agenda tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-agenda tbody tr:hover {
+    background-color: #f9f9f9; /* Levemente mais claro no hover */
+}
+
+/* ======================================= */
+/* ---- ESTILO DOS ÍCONES DE AÇÃO (TEMA CLARO) ---- */
+/* ======================================= */
+
+.actions-cell {
+    white-space: nowrap; /* Impede que os ícones quebrem a linha */
+}
+
+.actions-cell a {
+    font-size: 1.1rem; /* Tamanho do ícone */
+    margin-right: 15px; /* Espaço entre os ícones */
+    transition: color 0.2s ease;
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+.actions-cell a:last-child {
+    margin-right: 0;
+}
+
+/* [CORREÇÃO] Ícone de Editar agora é Roxo */
+.actions-cell .icon-edit {
+    color: #7E57C2; 
+}
+.actions-cell .icon-edit:hover {
+    color: #673AB7; /* Roxo mais escuro */
+}
+
+/* [CORREÇÃO] Ícone de Excluir agora é um Vermelho mais escuro */
+.actions-cell .icon-delete {
+    color: #dc3545; 
+}
+.actions-cell .icon-delete:hover {
+    color: #cc0000;
+}
+
+.icon-edit, .icon-delete, .icon-view {
+    color: #7E57C2; /* Ícones roxos */
+    margin-right: 10px;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+.icon-delete {
+    color: #dc3545; /* Ícone de deletar vermelho */
+}
+
+.icon-edit:hover, .icon-view:hover {
+    color: #673AB7;
+}
+.icon-delete:hover {
+    color: #c82333;
+}
+
+
+/* ======================================= */
+/* ---- [NOVO] ESTILO DA LISTA DE AGENDA ---- */
+/* ======================================= */
+
+/* Os botões "< >" da semana */
+.agenda-paginacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.agenda-paginacao-titulo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+.agenda-paginacao-nav a {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #7E57C2;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+.agenda-paginacao-nav a:hover {
+    background-color: #7E57C2;
+    color: #fff;
+    border-color: #7E57C2;
+}
+.agenda-paginacao-nav a:first-child {
+    margin-right: 0.5rem;
+}
+
+/* O "cabeçalho" do dia (ex: Segunda-feira, 17/11) */
+.agenda-dia-header {
+    font-size: 1.3rem;
+    color: #1a1a2e;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #7E57C2;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.agenda-dia-header span {
+    font-size: 1rem;
+    color: #777;
+    font-weight: normal;
+    margin-left: 0.5rem;
+}
+
+/* O card de cada agendamento (limpo) */
+.agenda-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    gap: 1.5rem;
+}
+/* O horário (ex: 15:00) */
+.agenda-item-hora {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #7E57C2;
+}
+/* As informações */
+.agenda-item-info {
+    flex-grow: 1;
+    border-left: 2px solid #f0f0f0;
+    padding-left: 1.5rem;
+}
+.agenda-item-info strong {
+    font-size: 1.2rem;
+    color: #333;
+    display: block;
+}
+.agenda-item-info span {
+    color: #777;
+    font-size: 0.9rem;
+}
+/* O ícone de chat */
+.agenda-item-acao a {
+    color: #7E57C2;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.agenda-item-acao a:hover {
+    color: #673AB7;
+}
+
+/* Agendamentos que já passaram */
+.agenda-item.passado {
+    background-color: #f9f9f9;
+    opacity: 0.7;
+}
+.agenda-item.passado .agenda-item-hora,
+.agenda-item.passado .agenda-item-info strong {
+    color: #888;
+    text-decoration: line-through;
+}
+/* ======================================= */
+/* ---- ESTILO MEUS HORÁRIOS (TEMA CLARO) ---- */
+/* ======================================= */
+
+/* ======================================= */
+/* ---- ESTILO MEUS HORÁRIOS (TEMA CLARO) ---- */
+/* ======================================= */
+
+/* --- O Card "Assistente Rápido" --- */
+.assistente-rapido-card {
+    /* [A CORREÇÃO] Adiciona o fundo roxo claro e a borda */
+    background-color: #f0e6fa; /* Um roxo BEM claro (para destacar) */
+    border-left: 4px solid #7E57C2; /* Borda roxa (tom correto) */
+}
+.assistente-rapido-card h3 {
+    color: #7E57C2; /* Título Roxo */
+}
+.assistente-rapido-card p {
+    font-size: 0.9rem;
+    margin-top: -1rem;
+    color: #555;
+}
+
+/* Os inputs de tempo 2x2 */
+.assistente-rapido-card .horario-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.assistente-rapido-card .horario-inputs label {
+    color: #666;
+}
+.assistente-rapido-card .horario-inputs input.timepicker {
+    background-color: #fff; /* Fundo branco (diferente do padrão) */
+}
+
+/* Os botões-pílula (Seg, Ter...) */
+.dias-checkboxes {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.dias-checkboxes input[type="checkbox"] {
+    display: none;
+}
+.dias-checkboxes label {
+    font-size: 0.9rem;
+    color: #666;
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dias-checkboxes input[type="checkbox"]:checked + label {
+    background-color: #7E57C2; /* Roxo */
+    color: #fff;
+    border-color: #7E57C2;
+}
+
+/* Os botões de Ação do Assistente */
+.assistente-rapido-card #btn_aplicar_horario {
+    background-color: #7E57C2; /* Roxo */
+    color: #fff;
+}
+.assistente-rapido-card #btn_dias_uteis {
+    background: none;
+    border: 1px solid #7E57C2; /* Borda roxa */
+    color: #7E57C2; /* Texto roxo */
+}
+.assistente-rapido-card #btn_dias_uteis:hover {
+    background-color: #7E57C2;
+    color: #fff;
+}
+/* --- A Lista Principal de Dias (Segunda-feira...) --- */
+.horario-dia-container {
+    background: #fdfdfd; /* Fundo branco (diferente do card de assistente) */
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #7E57C2; /* Borda roxa */
+    
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+.dia-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.dia-info strong {
+    font-size: 1.3rem;
+    color: #333;
+}
+.aberto-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666;
+}
+
+.horario-dia-container .horario-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0;
+}
+.horario-dia-container .horario-inputs label {
+    display: block; /* Força o label a ficar na linha de cima */
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: bold; /* Deixa o label mais legível */
+    margin-bottom: 5px; /* Adiciona um pequeno espaço acima do input */
+}
+
+/* O "Switch" de Aberto/Fechado */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+.switch input { 
+    opacity: 0; 
+    width: 0; 
+    height: 0; 
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Cinza claro */
+    transition: .4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #7E57C2; /* Roxo */
+}
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* A classe que o PHP já está usando */
+.error-message {
+    /* Define uma altura máxima inicial */
+    max-height: 100px; 
+    
+    /* As transições que vamos animar */
+    transition: opacity 0.5s ease-out, 
+                max-height 0.5s ease-out, 
+                padding 0.5s ease-out, 
+                margin 0.5s ease-out;
+                
+    overflow: hidden; /* Importante para a animação de altura */
+}
+
+/* A classe que o JavaScript vai adicionar para "sumir" */
+.error-message.fade-out {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0; /* Some com a borda (se houver) */
+}
+
+
+/* ======================================= */
+/* ---- ESTILO DO FORM "ADICIONAR FERIADO" (CORRIGIDO) ---- */
+/* ======================================= */
+
+.form-feriado-local {
+    display: grid;
+    /* Grid de 3 colunas: Data (1fr), Descrição (2fr), Botão (auto) */
+    grid-template-columns: 1fr 2fr auto; 
+    gap: 1rem;
+    align-items: flex-end; /* Alinha o botão com a base dos inputs */
+}
+
+/* Estiliza o ícone do calendário para ficar roxo 
+  (só funciona em navegadores Chrome/Edge)
+*/
+.form-feriado-local .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.3) sepia(1) saturate(5) hue-rotate(240deg) brightness(0.8); /* Tenta transformar em roxo */
+    cursor: pointer;
+}
+
+/* Remove a margem de baixo que o .form-group tem,
+  pois o 'gap' do grid já cuida disso.
+*/
+.form-feriado-local .form-group {
+    margin-bottom: 0;
+}
+
+
+/* ======================================= */
+/* ---- ESTILO DO FORM "GERENCIAR FERIADOS" (CORRIGIDO) ---- */
+/* ======================================= */
+
+.form-feriado-config {
+    display: flex;
+    justify-content: space-between; /* Espaça os itens */
+    align-items: center; /* Centraliza verticalmente */
+    flex-wrap: wrap; /* Quebra a linha em telas pequenas */
+    gap: 1.5rem; /* Espaço entre o toggle e os botões */
+    background-color: #fdfdfd; /* Fundo claro para o card de config */
+    padding: 1rem 1.5rem; /* Padding interno */
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    border-left: 4px solid #7E57C2; /* Borda roxa */
+}
+
+/* O container do "Bloquear feriados..." */
+.form-feriado-config .aberto-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Espaço entre o texto e o switch */
+    flex-grow: 1; /* Tenta ocupar o espaço vago */
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.form-feriado-config .aberto-toggle strong {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* O grupo do switch (Não, Sim) */
+.form-feriado-config .aberto-toggle > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.form-feriado-config .aberto-toggle > div span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #666;
+}
+
+/* O grupo dos botões (Salvar, Adicionar) */
+.form-feriado-config .botoes-feriado {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0; /* Impede que os botões encolham */
+}
+
+/* Ajusta os botões para o novo container */
+.form-feriado-config .botoes-feriado .form-button {
+    font-size: 0.9rem; /* Aplica o tamanho menor */
+    padding: 0.6rem 1rem; /* Aplica o padding menor */
+    margin-left: 0; /* Remove qualquer margem antiga */
+    /* Botão de "Adicionar Feriado Local" com borda roxa */
+    background: none; 
+    border: 1px solid #7E57C2; 
+    color: #7E57C2;
+}
+.form-feriado-config .botoes-feriado .form-button:hover {
+    background-color: #7E57C2;
+    color: white;
+}
+.form-feriado-config .botoes-feriado .form-button[type="submit"] {
+    background-color: #7E57C2;
+    color: white;
+    border: none;
+}
+.form-feriado-config .botoes-feriado .form-button[type="submit"]:hover {
+    background-color: #7E57C2;
+}
+
+
+/* ======================================= */
+/* ---- ESTILO DO MODAL (POP-UP) REUTILIZÁVEL ---- */
+/* ======================================= */
+
+.modal-overlay {
+    display: none; /* Começa escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente escuro */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.show {
+    display: flex; /* Classe que o JS usa para mostrar */
+}
+
+.modal-container {
+    background: #ffffff; /* Fundo branco */
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px; /* Largura do pop-up */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eee; /* Borda clara */
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 70vh; /* Altura máxima */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
+}
+
+/* ======================================= */
+/* ---- RESPONSIVIDADE BÁSICA ---- */
+/* ======================================= */
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 180px;
+        padding: 15px;
+    }
+    .sidebar h1 {
+        font-size: 1.7rem;
+    }
+    .sidebar-nav a {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    .main-content {
+        padding: 20px;
+    }
+    .main-content h2 {
+        font-size: 1.8rem;
+    }
+    .form-card {
+        padding: 20px;
+    }
+    .form-feriado-local {
+        grid-template-columns: 1fr; /* Em telas menores, um item por linha */
+        gap: 0.75rem;
+    }
+    .form-feriado-config {
+        flex-direction: column; /* Em telas pequenas, um item por linha */
+        align-items: flex-start;
+    }
+    .form-feriado-config .botoes-feriado {
+        width: 100%;
+        flex-direction: column; /* Botões empilhados */
+    }
+    .form-feriado-config .botoes-feriado .form-button {
+        width: 100%;
+        margin-left: 0 !important; /* Força remover a margem */
+    }
+    .calendario-semana-container {
+        grid-template-columns: 1fr; /* Uma coluna por dia em telas muito pequenas */
+    }
+    .horario-dia-container {
+        grid-template-columns: 1fr; /* Uma coluna por dia em telas muito pequenas */
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 60px; /* Sidebar colapsada */
+        padding: 10px 5px;
+    }
+    .sidebar h1 {
+        display: none; /* Esconde o título */
+    }
+    .sidebar-nav a {
+        text-indent: -9999px; /* Esconde o texto, mostra só ícone se tiver */
+        white-space: nowrap;
+        overflow: hidden;
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+    /* Se tiver ícones, ajuste aqui para mostrar */
+    .sidebar-logout a {
+        text-indent: -9999px;
+        overflow: hidden;
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+    .painel-container {
+        flex-direction: column; /* Sidebar em cima do conteúdo */
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+    .sidebar-logout {
+        display: none; /* Esconde o logout em mobile pequeno */
+    }
+    .main-content {
+        padding: 15px;
+    }
+    .modal-container {
+        width: 95%;
+        margin: 10px;
+    }
+}
+/* ======================================= */
+/* ---- ESTILO DO NOVO TIMEPICKER (BONITO) ---- */
+/* ======================================= */
+
+/* * Aplica o estilo de input padrão (light) 
+ * aos nossos novos inputs de texto que terão o relógio.
+*/
+.horario-inputs input.timepicker {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc; /* Borda clara */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #333; /* Texto escuro */
+    background-color: #fdfdfd; /* Fundo quase branco */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indica que é clicável */
+    
+    /* Adiciona um ícone de relógio DENTRO do input */
+    background-image: url('https://api.iconify.design/bx:time.svg?color=%237E57C2');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+/* Foco roxo */
+.horario-inputs input.timepicker:focus {
+    border-color: #7E57C2;
+    box-shadow: 0 0 5px rgba(126, 87, 194, 0.3);
+    outline: none;
+}
+/* ======================================= */
+/* ---- Container de Ações do Formulário ---- */
+/* ======================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* [ADICIONE ESTA NOVA REGRA] */
+/* Faz os botões dividirem o espaço igualmente */
+.form-actions .form-button,
+.form-actions .preview-button {
+    flex-basis: 50%; /* Cada um começa com 50% */
+    flex-grow: 1;    /* Crescem para preencher o espaço */
+}
+/* ======================================= */
+/* ---- ESTILO DO PORTFÓLIO (FUNCIONÁRIO) ---- */
+/* ======================================= */
+
+.portfolio-grid-func {
+    display: grid;
+    /* Colunas responsivas, 200px de largura mínima */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.portfolio-card-func {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.portfolio-card-func img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Garante que a imagem preencha */
+    display: block;
+}
+
+.portfolio-card-body {
+    padding: 1rem;
+}
+.portfolio-card-body p {
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+    /* Garante que o texto não quebre o card */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.portfolio-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding: 0.5rem 1rem;
+    background-color: #fdfdfd;
+}
+
+/* O "Switch" de Destaque */
+.portfolio-card-actions .destaque-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #666;
+}
+/* (Estamos reutilizando o .switch e .slider que já existem) */
+
+/* O botão de excluir */
+.portfolio-card-actions .icon-delete {
+    font-size: 1.1rem;
+    color: #ff5555;
+    transition: color 0.2s ease;
+}
+.portfolio-card-actions .icon-delete:hover {
+    color: #cc0000;
+}
+/* ======================================= */
+/* ---- ESTILO DO PORTFÓLIO (FORÇADO) ---- */
+/* ======================================= */
+
+.portfolio-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+    gap: 0.75rem !important;
+}
+
+.portfolio-item img {
+    width: 100% !important;
+    height: 110px !important; /* Força a altura pequena */
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    border: 1px solid #eee !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease !important;
+}
+
+.portfolio-item img:hover {
+    transform: scale(1.05);
+    border-color: #7E57C2;
+}
+/* ======================================= */
+/* ---- [NOVO] ÍCONE DE NOTIFICAÇÃO ---- */
+/* ======================================= */
+
+/* Alinha o <h2> e o ícone */
+.header-com-notificacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+.header-com-notificacao h2 {
+    margin: 0;
+    padding-bottom: 0.5rem;
+}
+
+.notification-icon-container {
+    position: relative; /* O "pai" do ponto vermelho */
+    cursor: pointer;
+}
+
+.notification-bell {
+    font-size: 1.8rem;
+    color: #888;
+    transition: color 0.2s ease;
+}
+.notification-bell:hover {
+    color: #7E57C2;
+}
+
+/* O "Ponto Vermelho" (Sua ideia) */
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background-color: #dc3545; /* Vermelho */
+    border-radius: 50%;
+    border: 2px solid #ffffff; /* Borda branca (para destacar) */
+}
+
+/* O Pop-up de Notificações */
+.notification-popup {
+    display: none; /* Começa escondido */
+    position: absolute;
+    top: calc(100% + 15px); /* Abaixo do ícone */
+    right: 0;
+    width: 350px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    border: 1px solid #eee;
+    z-index: 1000;
+}
+.notification-popup.show {
+    display: block;
+}
+/* A setinha do pop-up */
+.notification-popup::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffffff;
+}
+
+.notification-header {
+    padding: 0.8rem 1rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #555;
+    transition: background-color 0.2s ease;
+}
+.notification-item:last-child {
+    border-bottom: none;
+}
+.notification-item:hover {
+    background-color: #f9f9f9;
+}
+.notification-item strong {
+    color: #333;
+}
+.notification-item p {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    /* Corta a mensagem se for muito longa */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.notification-item small {
+    font-size: 0.8rem;
+    color: #999;
+}
+.notification-empty {
+    padding: 2rem;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+/* ======================================= */
+/* ---- [NOVO] ESTILOS DO DASHBOARD (FUNCIONÁRIO) ---- */
+/* ======================================= */
+
+.dashboard-grid {
+    display: grid;
+    /* Duas colunas principais (Próximos Clientes) e uma lateral (Perfil/Ações) */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.dashboard-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column; /* Organiza o título acima do conteúdo */
+}
+
+.dashboard-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+
+/* Card 1: Próximos Clientes */
+.card-proximos-clientes {
+    grid-column: span 2; /* Ocupa 2 colunas */
+}
+.lista-clientes-scroll {
+    flex-grow: 1; /* Ocupa o espaço */
+    max-height: 400px; /* Limita a altura */
+    overflow-y: auto; /* Adiciona scroll se a lista for grande */
+}
+.cliente-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+.cliente-item:last-child {
+    border-bottom: none;
+}
+.cliente-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.cliente-info strong {
+    font-size: 1.1rem;
+    color: #7E57C2;
+    background-color: #f0f2f5;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+.cliente-info span {
+    display: block;
+    font-weight: bold;
+    color: #333;
+}
+.cliente-info small {
+    color: #777;
+    font-size: 0.85rem;
+}
+.icon-btn.chat-link {
+    color: #7E57C2;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+.icon-btn.chat-link:hover {
+    background-color: #f0f2f5;
+}
+.empty-message-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    color: #888;
+    font-style: italic;
+}
+.empty-message-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Card 2: Meu Perfil */
+.perfil-info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.perfil-info-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #7E57C2;
+    margin-bottom: 1rem;
+}
+.perfil-info-card strong {
+    font-size: 1.2rem;
+    color: #333;
+}
+.perfil-info-card span {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* [SUBSTITUÍDO] Card 3: Rendimento Mensal (Gráfico) */
+.card-rendimento-mensal {
+    /* Ocupa a Linha 2, Coluna 1 */
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    min-height: 300px; /* Altura mínima para o gráfico */
+}
+/* ======================================= */
+/* ---- [NOVO] ESTILO DO RODAPÉ (FOOTER) ---- */
+/* ======================================= */
+
+.site-footer {
+    width: 100%;
+    background-color: #ffffff; /* Fundo branco, igual ao header */
+    border-top: 1px solid #eee; /* Linha para separar do conteúdo */
+    padding: 2rem 1.5rem;
+    margin-top: 3rem; /* Espaço acima do rodapé */
+    
+    color: #777; /* Cor do texto cinza */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: #777;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #7E57C2; /* Roxo! */
+}
+
+.footer-copyright {
+    font-size: 0.85rem;
+}
+/* ======================================= */
+/* ---- [NOVO] ESTILOS DO DASHBOARD (CORRIGIDO) ---- */
+/* ======================================= */
+
+.dashboard-grid {
+    display: grid;
+    /* [CORREÇÃO] Layout de 2 colunas: 2fr (larga) e 1fr (estreita) */
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.dashboard-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+
+/* Card 1: Próximos Clientes */
+.card-proximos-clientes {
+    /* [CORREÇÃO] Linha 1, Coluna 1 */
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+.lista-clientes-scroll {
+    flex-grow: 1;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.cliente-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+.cliente-item:last-child { border-bottom: none; }
+.cliente-info { display: flex; align-items: center; gap: 1rem; }
+.cliente-info strong {
+    font-size: 1.1rem;
+    color: #7E57C2;
+    background-color: #f0f2f5;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+.cliente-info span { display: block; font-weight: bold; color: #333; }
+.cliente-info small { color: #777; font-size: 0.85rem; }
+.icon-btn.chat-link {
+    color: #7E57C2;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+.icon-btn.chat-link:hover { background-color: #f0f2f5; }
+.empty-message-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+    color: #888;
+    font-style: italic;
+}
+.empty-message-card i { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Card 2: Meu Perfil */
+.card-meu-perfil {
+    /* [CORREÇÃO] Coluna 2, e ocupa 2 linhas de altura */
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2; 
+}
+.perfil-info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.perfil-info-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #7E57C2;
+    margin-bottom: 1rem;
+}
+.perfil-info-card strong { font-size: 1.2rem; color: #333; }
+.perfil-info-card span { color: #777; font-size: 0.9rem; }
+
+/* [NOVO] Card 3: Últimos Chats (Substitui Ações Rápidas) */
+.card-ultimos-chats {
+    /* [CORREÇÃO] Linha 2, Coluna 1 */
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+.lista-chats-scroll {
+    flex-grow: 1;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.chat-item:last-child { border-bottom: none; }
+.chat-item:hover { background-color: #f9f9f9; }
+
+.chat-item-foto img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.chat-item-info {
+    flex-grow: 1;
+    overflow: hidden; /* Para o ellipsis funcionar */
+}
+.chat-item-info strong {
+    color: #333;
+    font-size: 1rem;
+}
+.chat-item-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #777;
+    /* Corta a última mensagem */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* Bolha de notificação de nova mensagem */
+.chat-item-nova-badge {
+    background-color: #7E57C2;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+/* ======================================= */
+/* ---- [ATUALIZAÇÃO] CARD MEU PERFIL (FUNCIONÁRIO) ---- */
+/* ======================================= */
+
+.card-meu-perfil .perfil-info-card {
+    /* Faz o card interno crescer para preencher o espaço */
+    flex-grow: 1; 
+    
+    /* Mantém o alinhamento (Foto, Nome, Email) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* [NOVO] O link-card do negócio (que você pediu) */
+.perfil-negocio-link {
+    display: block;
+    width: 100%;
+    background-color: #f0f2f5; /* Fundo cinza claro (tema light) */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0; /* Espaçamento */
+    text-align: left;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+.perfil-negocio-link:hover {
+    box-shadow: 0 0 8px rgba(126, 87, 194, 0.3); /* Sombra roxa */
+    border-color: #7E57C2;
+}
+.perfil-negocio-link small {
+    display: block;
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 0.25rem;
+}
+.perfil-negocio-link strong {
+    font-size: 1.1rem;
+    color: #333;
+    display: block;
+}
+.perfil-negocio-link span {
+    font-size: 0.9rem;
+    color: #7E57C2; /* Roxo */
+    font-weight: bold;
+    margin-top: 0.5rem;
+    display: block;
+}
+.perfil-negocio-link span i {
+    margin-right: 0.3rem;
+}
+
+/* [AJUSTE] Faz o botão "Editar Perfil" ficar no fundo */
+.perfil-info-card .form-button {
+    margin-top: auto; /* Empurra o botão para o fundo do card */
+}
+/* ======================================= */
+/* ---- [NOVO] Botão "Remover Dono" ---- */
+/* ======================================= */
+
+.btn-remover-dono {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #dc3545; /* Vermelho */
+    background-color: #f8d7da; /* Fundo vermelho claro */
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.btn-remover-dono:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+/* ======================================= */
+/* ---- [FINAL] Link Extra do Dono (Portfólio) ---- */
+/* ======================================= */
+
+/* Esta é a classe para o link INATIVO */
+.sidebar-nav a.link-extra {
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+    padding-top: 10px;
+    
+    color: #555; /* [CORREÇÃO] Texto fica cinza */
+    font-weight: normal;
+}
+
+/* [A CORREÇÃO ESTÁ AQUI] 
+   Força o ícone DENTRO do link inativo a ser cinza também
+*/
+.sidebar-nav a.link-extra i {
+    color: #555;
+    margin-right: 0.5rem;
+    width: 1.2em;
+    transition: color 0.3s ease; /* Anima a cor do ícone */
+}
+
+/* * Quando o link (ou o ícone) estiver ATIVO ou em HOVER
+*/
+.sidebar-nav a.link-extra.active,
+.sidebar-nav a.link-extra:hover {
+    background-color: #7E57C2;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* [A CORREÇÃO ESTÁ AQUI] 
+   Força o ícone a ficar BRANCO quando o link estiver ativo/hover
+*/
+.sidebar-nav a.link-extra.active i,
+.sidebar-nav a.link-extra:hover i {
+    color: #ffffff;
+}
+/* ================================================================== */
+/* RAINBOW - MELHORIAS DE RESPONSIVIDADE MÓVEL (Adicione no final do style_site.css) */
+/* ================================================================== */
+
+@media (max-width: 768px) {
+    /* --- 1. Ajustes Gerais de Layout --- */
+    .site-container {
+        padding: 1rem; /* Menos padding lateral para ganhar espaço */
+        width: 95%; /* Ocupa quase toda a tela */
+    }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.2rem; }
+
+    /* --- 2. Header e Navegação (Estilo App) --- */
+    .site-header {
+        padding: 0.8rem 1rem;
+        /* Sombra mais suave no mobile */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    /* O menu dropdown no mobile precisa ser grande para o dedo */
+    .dropdown-content a {
+        padding: 1rem; /* Áreas de toque maiores (padrão 44px+) */
+        font-size: 1.1rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* --- 3. Cards (Serviços, Agendamentos, Profissionais) --- */
+    /* Transforma grids em coluna única */
+    .servicos-grid, 
+    .profissionais-grid, 
+    .appointments-list,
+    .equipe-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    /* Estilo de "Card de App" para os itens */
+    .servico-card, 
+    .appointment-card,
+    .equipe-membro,
+    .review-item {
+        padding: 1.2rem;
+        border-radius: 12px; /* Bordas mais arredondadas */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra mais elegante */
+        border: none; /* Remove bordas sólidas se houver */
+        background: #fff;
+    }
+
+    /* No histórico, o botão de avaliar fica full width */
+    .card-actions .action-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    /* --- 4. Perfil do Negócio (Capa e Informações) --- */
+    .perfil-header-card {
+        border-radius: 0 0 20px 20px; /* Arredonda só embaixo no mobile */
+        margin-top: -1rem; /* Cola no header */
+    }
+
+    .perfil-capa {
+        height: 180px; /* Capa menor */
+    }
+
+    .perfil-info-bar {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        margin-top: -60px; /* Sobe mais a foto */
+    }
+
+    .perfil-foto-wrapper img {
+        width: 100px;
+        height: 100px;
+        border-width: 3px;
+    }
+
+    .perfil-details h1 {
+        margin-top: 0.5rem;
+        font-size: 1.6rem;
+    }
+
+    .perfil-action-icons {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .icon-btn, .icon-link {
+        width: 35px; height: 35px; font-size: 1rem; /* Ícones menores */
+    }
+
+    /* Lightbox do Portfólio */
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+    .close-lightbox {
+        top: 10px; right: 20px;
+    }
+}
+/* ================================================================== */
+/* RAINBOW - PAINEL MOBILE "ESTILO APP" (Adicione no final do style_painel.css) */
+/* ================================================================== */
+
+@media (max-width: 900px) {
+
+    /* --- 1. Transformando a Sidebar em BOTTOM NAVIGATION BAR --- */
+    .painel-container {
+        flex-direction: column; /* Empilha o conteúdo */
+    }
+
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto; /* Altura automática */
+        max-height: 70px;
+        padding: 0.5rem;
+        flex-direction: row; /* Itens lado a lado */
+        justify-content: space-around;
+        align-items: center;
+        background-color: #fff; /* Fundo branco para contraste */
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Sombra para cima */
+        z-index: 1000;
+        border-radius: 20px 20px 0 0; /* Arredonda o topo */
+    }
+
+    /* Esconde elementos inúteis na barra inferior */
+    .sidebar h1, 
+    .sidebar-logout, 
+    .link-extra {
+        display: none !important;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        gap: 0;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-bottom: 0;
+        overflow-y: hidden; /* Remove o scroll que adicionamos antes */
+    }
+
+    /* Estilo dos ícones da Bottom Nav */
+    .sidebar-nav a {
+        flex-direction: column; /* Ícone em cima do texto */
+        padding: 0.4rem;
+        font-size: 0.7rem; /* Texto bem pequeno */
+        text-align: center;
+        color: #888;
+        border-radius: 10px;
+    }
+    
+    /* Aumenta o ícone (você precisará adicionar ícones nos links do menu para ficar legal, 
+       mas mesmo sem eles, o texto fica organizado) */
+    .sidebar-nav a i {
+        font-size: 1.4rem;
+        margin-bottom: 3px;
+        display: block;
+    }
+
+    .sidebar-nav a.active {
+        background-color: transparent; /* Remove fundo roxo chapado */
+        color: #7E57C2; /* Cor ícone ativo */
+        font-weight: bold;
+    }
+
+    /* --- 2. Ajustes do Conteúdo Principal --- */
+    .main-content {
+        padding: 1rem 1rem 80px 1rem; /* Padding extra embaixo para não ficar atrás da navbar */
+    }
+
+    .dashboard-grid, 
+    .grid-graficos,
+    .horario-inputs {
+        grid-template-columns: 1fr !important; /* Tudo em uma coluna */
+        gap: 1rem;
+    }
+
+    /* --- 3. O GRANDE TRUQUE DAS TABELAS (Tabela vira Card) --- */
+    /* Força a tabela a se comportar como blocos */
+    table.tabela-agenda, 
+    .tabela-agenda thead, 
+    .tabela-agenda tbody, 
+    .tabela-agenda th, 
+    .tabela-agenda td, 
+    .tabela-agenda tr { 
+        display: block; 
+    }
+
+    /* Esconde o cabeçalho da tabela (Data, Cliente, Serviço...) */
+    .tabela-agenda thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* Transforma cada linha (tr) em um card */
+    .tabela-agenda tr { 
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #eee;
+    }
+    
+    /* Estila as células (td) dentro do card */
+    .tabela-agenda td { 
+        /* Tenta fazer cada célula parecer uma linha de informação */
+        border: none;
+        padding: 0.4rem 0;
+        position: relative;
+        text-align: left;
+        font-size: 0.95rem;
+        border-bottom: 1px dotted #eee;
+    }
+    
+    .tabela-agenda td:last-child {
+        border-bottom: none;
+        text-align: center; /* Ações centralizadas no final */
+        padding-top: 1rem;
+    }
+
+    /* Ajustes específicos para a lista de clientes */
+    .cliente-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .status-badge {
+        align-self: flex-start;
+    }
+}
+/* ================================================================== */
+/* CORREÇÕES DE RESPONSIVIDADE - PAINEL DO DONO (MEUS HORÁRIOS) */
+/* ================================================================== */
+
+@media (max-width: 768px) {
+    
+    /* --- ASSISTENTE RÁPIDO (Botões "Aplicar" e "Selecionar Dias Úteis") --- */
+    .horario-card .form-button,
+    .quick-assist-actions button,
+    .quick-assist-actions a.form-button {
+        width: 100%;       /* Ocupa toda a largura */
+        margin-left: 0 !important;
+        margin-top: 12px;  /* Mais espaço entre eles */
+        padding: 14px 20px; /* Botões mais altos e fáceis de tocar */
+        font-size: 1.1rem;  /* Texto maior */
+    }
+
+    .quick-assist-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    /* --- GERENCIAR FERIADOS (Botões "Salvar" e "Adicionar") --- */
+    .dashboard-card {
+        height: auto !important; 
+    }
+
+    .switch-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .switch-label {
+        margin-right: 0;
+        margin-bottom: 8px;
+        font-size: 1.1rem; /* Rótulo um pouco maior */
+    }
+
+    .feriados-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .feriados-actions button,
+    .feriados-actions a.form-button {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 14px 20px; /* Botões mais altos */
+        font-size: 1.1rem;  /* Texto maior */
+    }
+
+    /* Formulário de adicionar feriado */
+    .add-holiday-form input[type="date"],
+    .add-holiday-form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 12px;
+        padding: 12px; /* Inputs mais fáceis de tocar */
+        font-size: 1rem;
+    }
+    
+    .add-holiday-form button {
+        width: 100%;
+        padding: 14px; /* Botão "Adicionar" também maior */
+        font-size: 1.1rem;
+    }
+}

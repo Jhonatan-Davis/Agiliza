@@ -1,0 +1,153 @@
+/* ---- style_login.css (TEMA LIGHT) ---- */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.login-container {
+    background-color: #ffffff; 
+    padding: 2.5rem;
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    width: 100%;
+    max-width: 380px; 
+    color: #333; 
+    box-sizing: border-box; 
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #1a1a2e; 
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.login-container h1 span {
+    color: #7E57C2; 
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555; 
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #f0f0f0; 
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    color: #333; 
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #7E57C2;
+    box-shadow: 0 0 8px rgba(126, 87, 194, 0.5);
+}
+
+/* ---- Botão ---- */
+.login-button {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #7E57C2; 
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #673AB7;
+}
+
+/* ---- Links ---- */
+.login-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.login-links a {
+    color: #7E57C2; 
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.login-links a:hover {
+    color: #673AB7;
+}
+
+.error-message {
+    background-color: #ff3333;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* ======================================= */
+/* ---- ÍCONE DE MOSTRAR SENHA (OLHO) ---- */
+/* ======================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Dá espaço para o ícone não ficar em cima do texto */
+.password-wrapper input {
+    padding-right: 40px; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.toggle-password:hover {
+    color: #7E57C2;
+}
+
+/* ======================================= */
+/* ---- REMOVER SETAS DO NAVEGADOR ---- */
+/* ======================================= */
+
+/* Remove setas de histórico/datalist do Chrome/Edge */
+input::-webkit-calendar-picker-indicator {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+/* Remove setas de número */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
