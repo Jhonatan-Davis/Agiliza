@@ -86,15 +86,12 @@ Tudo isso com uma interface intuitiva, moderna e focada na produtividade.
 
 ## 🛠 Tecnologias Utilizadas
 
-> Personalize esta seção conforme seu projeto.
-
 * PHP
 * MySQL
 * HTML5
 * CSS3
 * JavaScript
 * Bootstrap
-* AJAX
 
 ---
 
