@@ -1,0 +1,3241 @@
+/* ======================================= */
+/* ---- TESTE DE CORREÇÃO DO PORTFÓLIO ---- */
+/* ======================================= */
+
+.portfolio-gallery {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
+  gap: 0.75rem !important;
+  padding: 0 !important; /* Reset do padding */
+  margin: 0 !important; /* Reset da margem */
+}
+
+.portfolio-item {
+  padding: 0 !important; /* Reset do padding */
+  margin: 0 !important; /* Reset da margem */
+}
+
+.portfolio-item img {
+  width: 100% !important;
+  height: 110px !important; /* Força a altura pequena */
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  border: 1px solid #eee !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
+  display: block !important; /* Garante que é um bloco */
+}
+
+.portfolio-item img:hover {
+  transform: scale(1.05);
+  border-color: #7e57c2;
+}
+/* ======================================= */
+/* ---- FIM DO TESTE DE CORREÇÃO ---- */
+/* ======================================= */ /* ---- Reset Básico ---- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Fundo claro e limpo */
+  color: #333;
+  padding-top: 5rem; /* Espaço para o Header Fixo */
+}
+
+/* ======================================= */
+/* ---- HEADER FIXO (TEMA LIGHT) ---- */
+/* ======================================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0; /* Adicionado para garantir */
+  z-index: 999;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1a1a2e;
+  text-decoration: none;
+}
+
+.site-header .logo span {
+  color: #7e57c2; /* O "za" roxo */
+}
+
+.site-header nav a {
+  text-decoration: none;
+  color: #555;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.site-header nav a:hover {
+  color: #7e57c2;
+}
+
+/* ======================================= */
+/* ---- DROPDOWN DE USUÁRIO (HEADER) ---- */
+/* ======================================= */
+.header-perfil-foto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+  display: flex; /* Alinha foto e texto */
+  align-items: center; /* Alinha foto e texto */
+}
+
+.dropdown-btn:hover {
+  color: #7e57c2;
+}
+
+.dropdown-btn .fa-chevron-down {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background-color: #ffffff;
+  min-width: 220px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 100;
+  padding: 0.5rem 0;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  font-weight: normal;
+}
+
+.dropdown-content a:hover {
+  background-color: #f4f4f4;
+  color: #7e57c2;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 0.5rem 0;
+}
+
+.dropdown-content .logout-link {
+  color: #ff5555;
+  font-weight: bold;
+}
+.dropdown-content .logout-link:hover {
+  background-color: #fff0f0;
+  color: #cc0000;
+}
+
+/* ======================================= */
+/* ---- CONTEÚDO PRINCIPAL (INDEX, PERFIL) ---- */
+/* ======================================= */
+.site-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.site-container h1 {
+  font-size: 2.5rem;
+  color: #1a1a2e;
+}
+
+/* ======================================= */
+/* ---- BARRA DE BUSCA E FILTRO ---- */
+/* ======================================= */
+.search-filter-bar {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.search-group {
+  flex: 3;
+  min-width: 250px;
+}
+.filter-group {
+  flex: 2;
+  min-width: 200px;
+}
+.search-group label,
+.filter-group label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.search-input,
+.filter-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+.search-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #7e57c2;
+  background-color: #fff;
+}
+.search-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #7e57c2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+.search-button:hover {
+  background-color: #673ab7;
+}
+
+/* ======================================= */
+/* ---- CARDS DE NEGÓCIO (INDEX) ---- */
+/* ======================================= */
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.business-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-decoration: none;
+  color: #333;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+.business-card .card-capa {
+  width: 100%;
+  height: 140px;
+  background-color: #e0e0e0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.business-card .card-perfil {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  border: 4px solid #ffffff;
+  object-fit: cover;
+  position: absolute;
+  bottom: -40px;
+  left: 20px;
+}
+.business-card .card-info {
+  padding: 20px;
+  padding-top: 50px;
+}
+.business-card .card-info h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #1a1a2e;
+}
+
+/* ======================================= */
+/* ---- PÁGINA DE PERFIL (MEU PERFIL) ---- */
+/* ======================================= */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.profile-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+.profile-card h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+}
+.device-info {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 6px;
+}
+.device-info .fa-desktop {
+  font-size: 2rem;
+  color: #555;
+  margin-right: 1rem;
+}
+.device-details {
+  display: flex;
+  flex-direction: column;
+}
+.device-details strong {
+  font-size: 1rem;
+  color: #333;
+}
+.device-details span {
+  font-size: 0.85rem;
+  color: #777;
+  word-break: break-all;
+}
+.device-details .ip-address {
+  font-weight: bold;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* ======================================= */
+/* ---- UPLOAD DE ARQUIVO (TEMA LIGHT) ---- */
+/* ======================================= */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.form-group-file {
+  position: relative;
+  width: 100%;
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.form-group-file:hover {
+  border-color: #7e57c2;
+}
+.file-input-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-input-label {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  background-color: #7e57c2;
+  color: #ffffff !important;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.file-input-label:hover {
+  background-color: #673ab7;
+}
+.file-input-filename {
+  display: inline-block;
+  margin-left: 1rem;
+  color: #777;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+.preview-container {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+}
+.preview-container img.preview-perfil {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* ======================================= */
+/* ---- PÁGINA "MEUS AGENDAMENTOS" ---- */
+/* ======================================= */
+.section-title {
+  font-size: 1.8rem;
+  color: #1a1a2e;
+  border-bottom: 2px solid #7e57c2;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+}
+.appointments-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.appointment-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #7e57c2;
+  display: flex;
+  flex-wrap: wrap;
+}
+.appointment-card.is-past {
+  border-left-color: #999;
+}
+.appointment-card .card-header {
+  background: #f9f9f9;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.appointment-card.is-past .card-header {
+  background: #f0f0f0;
+}
+.appointment-card .card-header h3 {
+  margin: 0;
+  color: #1a1a2e;
+}
+.appointment-card .card-header span {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+}
+.appointment-card .card-body {
+  flex: 3;
+  padding: 1.5rem;
+  min-width: 300px;
+}
+.appointment-card .card-body strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+.appointment-card .card-body p {
+  margin: 0.5rem 0 0;
+  color: #555;
+}
+.appointment-card .card-body p.endereco {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.8rem;
+}
+.status-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  background-color: #ddd;
+  color: #333;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.appointment-card .card-actions {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  min-width: 180px;
+  border-left: 1px solid #eee;
+}
+.appointment-card.is-past .card-actions {
+  border-left: none;
+}
+.action-btn {
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+.action-btn.chat-btn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.action-btn.chat-btn:hover {
+  background-color: #e0e0e0;
+}
+.action-btn.cancel-btn {
+  background-color: transparent;
+  color: #ff5555;
+  border: 1px solid #ff5555;
+}
+.action-btn.cancel-btn:hover {
+  background-color: #ff5555;
+  color: #fff;
+}
+.empty-message {
+  padding: 2rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  color: #777;
+  font-size: 1.1rem;
+}
+@media (max-width: 768px) {
+  .appointment-card .card-actions {
+    flex-direction: row;
+    border-left: none;
+    border-top: 1px solid #eee;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+/* ======================================= */
+/* ---- [NOVO] ASSISTENTE DE AGENDAMENTO ---- */
+/* ======================================= */
+
+.wizard-subtitulo {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* O Indicador de Passos (1, 2, 3) */
+.wizard-stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+
+  /* Linha cinza atrás dos passos */
+}
+.wizard-stepper::before {
+  content: "";
+  position: absolute;
+  top: 15px; /* Alinha com o centro do ícone */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa; /* Cor Padrão (Inativo) */
+  font-weight: bold;
+  z-index: 2; /* Fica na frente da linha */
+  background-color: #f4f4f4; /* Fundo do body (corta a linha) */
+  padding: 0 1rem;
+}
+.step-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #aaa; /* Círculo Inativo */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Estilo do Passo Ativo */
+.step.active {
+  color: #7e57c2; /* Roxo */
+}
+.step.active .step-icon {
+  background-color: #7e57c2; /* Roxo */
+}
+
+/* O "Container" dos Passos (onde o conteúdo aparece) */
+.wizard-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+
+.wizard-step {
+  display: none; /* Esconde todos por padrão */
+}
+.wizard-step.active-step {
+  display: block; /* Mostra só o passo ativo */
+}
+
+.wizard-step h2 {
+  color: #1a1a2e;
+  font-size: 1.8rem;
+  margin-top: 0;
+}
+
+/* Botão de Voltar */
+.wizard-back-btn {
+  /* [CORREÇÃO] Estilo de botão "vazado" (outline) */
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #7e57c2; /* Borda roxa */
+  color: #7e57c2; /* Texto roxo */
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+
+  padding: 0.5rem 1rem; /* Adiciona espaçamento interno */
+  border-radius: 6px; /* Bordas arredondadas */
+  text-decoration: none; /* Remove qualquer sublinhado */
+
+  transition: all 0.3s ease;
+}
+
+.wizard-back-btn:hover {
+  background-color: #7e57c2; /* Fica roxo */
+  color: #fff; /* Texto fica branco */
+}
+/* Grade de Cards (para Serviços e Profissionais) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.wizard-card-item {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.wizard-card-item:hover {
+  border-color: #7e57c2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Card de Serviço (Preço na direita) */
+.servico-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.servico-card .card-content strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #333;
+}
+.servico-card .card-content span {
+  font-size: 0.9rem;
+  color: #777;
+}
+.servico-card .card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #7e57c2;
+}
+
+/* (Estilos do Passo 2 e 3 serão adicionados aqui) */
+/* ======================================= */
+/* ---- ESTILOS DO PASSO 2 (PROFISSIONAIS) ---- */
+/* ======================================= */
+
+.professional-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.professional-card {
+  position: relative; /* Pai do pop-up de fotos */
+  padding: 1rem;
+  text-align: center;
+}
+.professional-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  border: 3px solid #eee;
+}
+.professional-card .card-content {
+  margin-top: 0.5rem;
+}
+.professional-card .card-content strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* O "Dashboard" de fotos (Sua ideia) */
+.professional-portfolio-popup {
+  display: none; /* Escondido por padrão */
+  position: absolute;
+  bottom: 105%; /* Aparece ACIMA do card */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 280px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  z-index: 1010;
+}
+/* Mostra o pop-up no hover */
+.professional-card:hover .professional-portfolio-popup {
+  display: block;
+}
+.professional-portfolio-popup h5 {
+  margin: 0.5rem;
+  text-align: left;
+  color: #333;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.portfolio-grid img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: none;
+}
+/* ======================================= */
+/* ---- ESTILOS DO PASSO 3 (HORÁRIOS) ---- */
+/* ======================================= */
+
+.horarios-container {
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+.horarios-container h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.horarios-grid {
+  display: grid;
+  /* Cria colunas responsivas para os botões de hora */
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.75rem; /* Espaço entre os botões */
+  margin-top: 1rem;
+}
+
+.time-slot-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.time-slot-btn:hover {
+  background-color: #e0e0e0;
+  border-color: #ccc;
+}
+.time-slot-btn.selected {
+  background-color: #7e57c2; /* Roxo */
+  color: #fff;
+  border-color: #7e57c2;
+}
+.time-slot-btn:disabled {
+  background-color: #f9f9f9;
+  color: #aaa;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+/* ======================================= */
+/* ---- TEMA ROXO (PURPLE) PARA O CALENDÁRIO ---- */
+/* ======================================= */
+
+.flatpickr-calendar {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+.flatpickr-months .flatpickr-month {
+  background: #7e57c2; /* Fundo roxo */
+  color: #fff;
+}
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+  fill: #fff; /* Setas brancas */
+}
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+  fill: #ddd;
+}
+.flatpickr-weekday {
+  background: #7e57c2; /* Fundo roxo */
+  color: #fff;
+  font-weight: bold;
+}
+.flatpickr-day.today {
+  border-color: #7e57c2;
+}
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: #7e57c2; /* Dia selecionado roxo */
+  border-color: #7e57c2;
+  color: #fff;
+}
+.flatpickr-day:hover {
+  background: #e6e0f2; /* Roxo bem claro no hover */
+}
+/* Esconde o input de data feio do Firefox */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+/* ======================================= */
+/* ---- ESTILOS DO PASSO 4 (CONFIRMAÇÃO) ---- */
+/* ======================================= */
+.resumo-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.resumo-card h3 {
+  margin-top: 0;
+  color: #1a1a2e;
+}
+.resumo-card ul {
+  list-style: none;
+  padding: 0;
+}
+.resumo-card li {
+  font-size: 1.1rem;
+  color: #333;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+.resumo-card li strong {
+  color: #555;
+  font-weight: normal;
+}
+.resumo-card li:last-child {
+  border-bottom: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+/* ======================================= */
+/* ---- ESTILO DO BOTÃO DE FORMULÁRIO (CORRIGIDO) ---- */
+/* ======================================= */
+
+.form-button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+
+  background-color: #7e57c2; /* Fundo Roxo */
+  color: #ffffff; /* Texto Branco */
+
+  padding: 12px 20px;
+  border: 1px solid #7e57c2;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #673ab7; /* Roxo mais escuro */
+  border-color: #673ab7;
+  color: #ffffff; /* Texto continua branco */
+}
+
+/* Garante que o botão desabilitado fique cinza */
+.form-button:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+/* ======================================= */
+/* ---- ESTILO DO AGENDAMENTO PASSADO ---- */
+/* ======================================= */
+
+.agendamento-card.passado {
+  background-color: #f0f2f5; /* Fundo cinza (do tema light) */
+  color: #888; /* Texto cinza claro */
+  border: 1px dashed #ccc; /* Borda tracejada */
+}
+
+.agendamento-card.passado strong {
+  color: #888;
+}
+
+.agendamento-card.passado span {
+  color: #999;
+  text-decoration: line-through; /* Risca o serviço */
+}
+/* ======================================= */
+/* ---- ESTILOS DO PERFIL DO NEGÓCIO ---- */
+/* ======================================= */
+
+.perfil-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  margin-top: calc(5rem + 2rem); /* 5rem (header) + 2rem (margem) */
+}
+
+/* O card de cabeçalho (com capa, foto, nome) */
+.perfil-header-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Importante para a capa */
+  position: relative; /* Pai dos ícones de ação */
+  margin-bottom: 2rem;
+}
+
+.perfil-capa {
+  height: 220px;
+  background-color: #e0e0e0;
+  background-size: cover;
+  background-position: center;
+}
+
+.perfil-info-bar {
+  display: flex;
+  align-items: flex-end; /* Alinha a foto com o nome */
+  padding: 0 2rem 1.5rem 2rem;
+  margin-top: -60px; /* Puxa para cima da capa */
+  position: relative;
+  z-index: 2;
+}
+
+.perfil-foto-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  margin-right: 1.5rem;
+  flex-shrink: 0; /* Impede que a foto encolha */
+}
+
+.perfil-foto-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.perfil-details {
+  flex-grow: 1;
+}
+.perfil-details h1 {
+  color: #1a1a2e;
+  margin: 0;
+  margin-top: 50px; /* Garante que o nome não fique atrás da foto */
+  font-size: 2.2rem;
+}
+.perfil-details p {
+  color: #555;
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+
+/* Ícones (Coração e Mapa) */
+.perfil-action-icons {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  z-index: 3; /* Na frente da capa */
+}
+
+.perfil-action-icons .icon-btn,
+.perfil-action-icons .icon-link {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fundo branco semi-transparente */
+  color: #333;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+.perfil-action-icons .icon-btn:hover,
+.perfil-action-icons .icon-link:hover {
+  background-color: #fff;
+  color: #7e57c2;
+}
+.perfil-action-icons .icon-btn.favorited {
+  background-color: #ff69b4; /* Rosa */
+  color: #fff;
+}
+.perfil-action-icons .icon-btn.favorited:hover {
+  background-color: #ff85c0;
+}
+
+/* Seção de Serviços, Equipe, etc. */
+.perfil-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+.perfil-section-header {
+  display: flex;
+  justify-content: space-between; /* Alinha o título e o botão */
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+.perfil-section-header h2 {
+  margin: 0;
+  color: #1a1a2e;
+}
+.perfil-section-body {
+  padding: 1.5rem;
+}
+
+/* Card de Serviço */
+.servico-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.servico-item-card:last-child {
+  border-bottom: none;
+}
+.servico-info h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+.servico-info span {
+  font-size: 0.9rem;
+  color: #777;
+}
+.servico-preco {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #7e57c2;
+}
+
+/* Card de Equipe */
+.equipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+.equipe-membro img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+.equipe-membro strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #333;
+}
+/* ======================================= */
+/* ---- ESTILOS DA PÁGINA DE CHAT ---- */
+/* ======================================= */
+
+.chat-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  margin-top: calc(5rem + 2rem); /* Espaço para o header fixo */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 75vh; /* 75% da altura da tela */
+}
+/* ======================================= */
+/* ---- CABEÇALHO DO CHAT (ATUALIZADO) ---- */
+/* ======================================= */
+
+.chat-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+
+  /* [NOVO] Usa Flexbox para alinhar tudo */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Espaço entre os itens */
+}
+
+/* [NOVO] Container para o Título e Subtítulo */
+.chat-header-info {
+  flex-grow: 1; /* Ocupa o espaço vago */
+}
+.chat-header-info h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a1a2e;
+}
+.chat-header-info p {
+  margin: 0.25rem 0 0;
+  color: #777;
+}
+
+/* [NOVO] Container para a Foto e o Botão "Voltar" */
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espaço entre o botão e a foto */
+  flex-shrink: 0; /* Impede que encolham */
+}
+
+/* [NOVO] A Foto de Perfil */
+.chat-header-foto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+/* Ajusta o botão "Voltar" (que já temos) */
+.chat-header .wizard-back-btn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* A janela de mensagens */
+.chat-window {
+  flex-grow: 1; /* Ocupa todo o espaço */
+  padding: 1.5rem;
+  overflow-y: auto; /* Scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.message-bubble strong {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  color: inherit; /* Pega a cor do pai */
+  opacity: 0.8;
+}
+
+/* Mensagem DELES (Profissional) */
+.bubble-theirs {
+  background-color: #f0f0f0;
+  color: #333;
+  border-top-left-radius: 0;
+  align-self: flex-start; /* Alinha à esquerda */
+}
+
+/* Minha Mensagem (Cliente) */
+.bubble-mine {
+  background-color: #7e57c2;
+  color: #fff;
+  border-top-right-radius: 0;
+  align-self: flex-end; /* Alinha à direita */
+}
+
+/* O formulário de enviar */
+.chat-form {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 1rem;
+}
+.chat-form input[type="text"] {
+  flex-grow: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+}
+.chat-form input[type="text"]:focus {
+  outline: none;
+  border-color: #7e57c2;
+}
+.chat-form button {
+  background-color: #7e57c2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.chat-form button:hover {
+  background-color: #673ab7;
+}
+/* Estilo para chat desabilitado (regra dos 3 dias) */
+.chat-form.disabled {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+/* ======================================= */
+/* ---- ESTILOS DA PÁGINA DE CHAT (TEMA LIGHT) ---- */
+/* ======================================= */
+
+.chat-container {
+  max-width: 800px;
+  margin: 2rem auto; /* Margem padrão */
+  margin-top: calc(1.8rem + 0.1rem); /* [GARANTIA] Espaço para o header fixo */
+  margin-bottom: 2rem; /* [GARANTIA] Espaço na parte de baixo */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+/* O cabeçalho */
+.chat-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0; /* Impede que encolha */
+}
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a1a2e; /* Título escuro */
+}
+.chat-header p {
+  margin: 0.25rem 0 0;
+  color: #777;
+}
+/* Link "Voltar" */
+.chat-header h1 a {
+  color: #7e57c2; /* Roxo */
+  font-size: 0.9rem;
+  font-weight: normal;
+  text-decoration: none;
+  float: right; /* Alinha à direita */
+  transition: color 0.2s ease;
+}
+.chat-header h1 a:hover {
+  color: #673ab7; /* Roxo escuro */
+}
+
+/* A janela de mensagens */
+.chat-window {
+  flex-grow: 1; /* Ocupa todo o espaço */
+  padding: 1.5rem;
+  overflow-y: auto; /* Adiciona scroll */
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9; /* Fundo cinza claro (para contraste) */
+}
+
+/* Bolha de mensagem */
+.message-bubble {
+  max-width: 70%;
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+.message-bubble strong {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* Mensagem DELES (Profissional) */
+.bubble-theirs {
+  background-color: #ffffff; /* Fundo branco */
+  color: #333;
+  border: 1px solid #eee;
+  border-top-left-radius: 0;
+  align-self: flex-start; /* Alinha à esquerda */
+}
+.bubble-theirs strong {
+  color: #7e57c2; /* Destaca o nome dele em roxo */
+}
+
+/* Minha Mensagem (Cliente) */
+.bubble-mine {
+  background-color: #7e57c2; /* Fundo Roxo */
+  color: #fff;
+  border-top-right-radius: 0;
+  align-self: flex-end; /* Alinha à direita */
+}
+
+/* O formulário de enviar */
+.chat-form {
+  display: flex;
+  border-top: 1px solid #eee;
+  padding: 1rem;
+  background-color: #fff; /* Fundo branco */
+  flex-shrink: 0;
+}
+
+/* O input de texto (reaproveitando o estilo) */
+.chat-form input[type="text"] {
+  flex-grow: 1;
+  /* Reusa o .search-input */
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  margin-right: 0.5rem;
+}
+.chat-form input[type="text"]:focus {
+  outline: none;
+  border-color: #7e57c2;
+}
+
+/* O botão de enviar (reaproveitando o estilo) */
+.chat-form button {
+  /* Reusa o .form-button */
+  background-color: #7e57c2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+.chat-form button:hover {
+  background-color: #673ab7;
+}
+
+/* Chat desabilitado (expirado) */
+.chat-form.disabled {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+/* ======================================= */
+/* ---- ESTILO DE HORA E STATUS DO CHAT ---- */
+/* ======================================= */
+
+/* Ajusta a bolha para ter espaço */
+.message-bubble {
+  position: relative; /* Pai do timestamp */
+  padding-bottom: 25px; /* Abre espaço para a hora */
+}
+
+/* O container para a hora e o status */
+.message-timestamp {
+  position: absolute;
+  bottom: 8px; /* Fica no fundo */
+  right: 12px; /* Fica na direita */
+  font-size: 0.75rem;
+  color: #eee; /* Cor clara para o fundo roxo */
+  opacity: 0.8;
+}
+
+/* Cor do timestamp na bolha "deles" (branca) */
+.bubble-theirs .message-timestamp {
+  color: #999; /* Cor escura para o fundo branco */
+}
+
+/* O ícone de status (✓✓) */
+.message-status {
+  margin-left: 3px;
+  font-size: 0.8rem;
+}
+
+/* A cor "Lido" (Azul/Roxo do WhatsApp) */
+.message-status.read {
+  color: #4fb6ec; /* Azul "Visto" */
+}
+/* ======================================= */
+/* ---- [NOVO] ESTILO DO RODAPÉ (FOOTER) ---- */
+/* ======================================= */
+
+.site-footer {
+  width: 100%;
+  background-color: #ffffff; /* Fundo branco, igual ao header */
+  border-top: 1px solid #eee; /* Linha para separar do conteúdo */
+  padding: 2rem 1.5rem;
+  margin-top: 3rem; /* Espaço acima do rodapé */
+
+  color: #777; /* Cor do texto cinza */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: #777;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #7e57c2; /* Roxo! */
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+}
+/* ======================================= */
+/* ---- [NOVO] BANNER DE PRÉ-VISUALIZAÇÃO ---- */
+/* ======================================= */
+
+.preview-banner {
+  background-color: #7e57c2; /* Roxo */
+  color: #fff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+
+  /* Fixo abaixo do header */
+  position: fixed;
+  top: 5rem; /* Altura do seu header fixo */
+  width: 100%;
+  z-index: 998; /* Fica abaixo do header (999) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.preview-banner i {
+  margin-right: 0.5rem;
+}
+
+/* [CORREÇÃO] Empurra o conteúdo para baixo 
+   QUANDO o banner estiver ativo 
+*/
+body.in-preview-mode .site-container {
+  margin-top: calc(5rem + 4.5rem); /* Header + Banner + Margem */
+}
+.hero-section {
+  /* O layout (para a tela não quebrar) */
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  background:
+    linear-gradient(rgba(126, 87, 194, 0.85), rgba(126, 87, 194, 0.85)),
+    url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+}
+.hero-section h1 {
+  font-size: 3.2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-section p {
+  font-size: 1.35rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* [A CORREÇÃO DO BOTÃO ESTÁ AQUI]
+  Estilo do botão "Cadastre-se Gratuitamente" 
+*/
+.hero-section .form-button,
+.hero-section .form-button:link,
+.hero-section .form-button:visited {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.8rem 2rem;
+
+  background-color: #ffffff !important; /* Força o fundo BRANCO */
+  color: #7e57c2 !important; /* Força o texto ROXO */
+
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.hero-section .form-button:hover {
+  background-color: #f4f4f4 !important; /* Fundo cinza claro no hover */
+  color: #673ab7 !important; /* Roxo mais escuro no hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+/* ... (restante do hero-section .form-button) ... */
+
+/* Agora ajuste a seção "COMO FUNCIONA" */
+/* Procure por: /* ---- [NOVO] "COMO FUNCIONA" (PASSOS) ---- */
+/* E substitua o bloco para .how-it-works-section */
+
+.how-it-works-section {
+  background: #fff; /* Fundo branco para a seção */
+  padding: 3rem 2rem; /* Padding interno */
+  margin-top: 4rem; /* [CORREÇÃO] Adiciona um bom espaçamento entre o HERO e esta seção */
+  margin-bottom: 4rem; /* Adiciona espaçamento inferior */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+  position: relative;
+  z-index: 10;
+}
+.how-it-works-section h2 {
+  text-align: center;
+  color: #1a1a2e;
+  font-size: 2.2rem; /* [CORREÇÃO] Aumenta o título */
+  margin-top: 0;
+  margin-bottom: 2.5rem; /* Aumenta a margem inferior */
+  font-weight: 800;
+}
+/* ... (restante dos estilos .how-it-works-grid, .how-it-works-step) ... */
+/* ======================================= */
+/* ---- [NOVO] "COMO FUNCIONA" (PASSOS) ---- */
+/* ======================================= */
+
+/* O "site-container" nós já temos, vamos reusá-lo */
+.how-it-works-grid {
+  display: grid;
+  /* 3 colunas, responsivo */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.how-it-works-step {
+  text-align: center;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.how-it-works-step i {
+  font-size: 3rem;
+  color: #7e57c2; /* Roxo */
+  background-color: #f0e6fa; /* Roxo claro */
+  padding: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+
+  /* Efeito de ícone "flutuando" */
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.how-it-works-step h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.3rem;
+}
+.how-it-works-step p {
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/* ======================================= */
+/* ---- [NOVO] SEÇÃO DE AVALIAÇÕES (DEPOIMENTOS) ---- */
+/* ======================================= */
+
+.testimonials-section {
+  /* Fundo cinza um pouco diferente para destacar */
+  background-color: #f9f9f9;
+  padding: 4rem 2rem;
+  border-top: 1px solid #eee;
+}
+.testimonials-section h2 {
+  text-align: center;
+  color: #1a1a2e;
+  font-size: 2.2rem;
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  font-weight: 800;
+}
+.testimonials-grid {
+  display: grid;
+  /* 3 colunas, responsivo */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.testimonial-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; /* Faz o <p> crescer e o <cite> ficar no fundo */
+}
+.testimonial-card p {
+  font-style: italic;
+  color: #555;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+  flex-grow: 1; /* Empurra a nota e o autor para baixo */
+}
+.testimonial-card .rating-stars {
+  color: #ffc107; /* Amarelo estrela */
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.testimonial-card cite {
+  font-weight: bold;
+  color: #333;
+  font-style: normal; /* Remove o itálico do <cite> */
+}
+/* ======================================= */
+/* ---- [NOVO] "COMO FUNCIONA" (MELHORADO) ---- */
+/* ======================================= */
+.how-it-works-section {
+  background: #fff;
+  padding: 4rem 2rem;
+  margin-top: -4rem; /* Puxa para cima do "Hero" */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 10;
+}
+.how-it-works-section h2 {
+  text-align: center;
+  color: #1a1a2e;
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.how-it-works-step {
+  text-align: center;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  /* [CORREÇÃO] Sombra mais forte */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  /* [CORREÇÃO] A "mini animação" */
+  transition: all 0.3s ease-in-out;
+}
+.how-it-works-step:hover {
+  transform: translateY(-5px); /* Efeito de "levantar" */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra fica mais forte */
+}
+.how-it-works-step i {
+  font-size: 2.5rem;
+  color: #7e57c2; /* Roxo */
+  background-color: #f0e6fa; /* Roxo claro */
+  width: 80px;
+  height: 80px;
+  line-height: 80px; /* Alinha o ícone verticalmente */
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+.how-it-works-step h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.3rem;
+}
+.how-it-works-step p {
+  color: #777;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ======================================= */
+/* ---- [NOVO] SEÇÃO DE AVALIAÇÕES (DEPOIMENTOS) ---- */
+/* ======================================= */
+.testimonials-section {
+  padding: 5rem 2rem;
+  background-color: #f9f9f9; /* Fundo cinza claro */
+}
+.testimonials-section h2 {
+  text-align: center;
+  color: #1a1a2e;
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.testimonial-card {
+  background: #fff;
+  border-radius: 8px;
+  /* [CORREÇÃO] Sombra mais forte */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  /* [CORREÇÃO] A "mini animação" */
+  transition: all 0.3s ease-in-out;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px); /* Efeito de "levantar" */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra fica mais forte */
+}
+.testimonial-card p {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #555;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.6;
+  flex-grow: 1; /* Empurra o autor para baixo */
+}
+.testimonial-card .rating-stars {
+  color: #ffc107; /* Amarelo estrela */
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.testimonial-card cite {
+  font-weight: bold;
+  color: #333;
+  font-style: normal;
+}
+/* ======================================= */
+/* ---- [CORREÇÃO] Botão Cadastre-se (Header) ---- */
+/* ======================================= */
+
+/*
+* Esta regra é SUPER específica para o botão 
+* "Cadastre-se" dentro do header.
+*/
+.site-header nav a.form-button,
+.site-header nav a.form-button:link,
+.site-header nav a.form-button:visited {
+  color: #ffffff !important; /* [A CORREÇÃO] Força o texto a ser BRANCO */
+
+  /* (Garante as outras cores) */
+  background-color: #7e57c2;
+  border: 1px solid #7e57c2;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* O hover do botão do header */
+.site-header nav a.form-button:hover {
+  background-color: #673ab7; /* Roxo mais escuro */
+  border-color: #673ab7;
+  color: #ffffff !important; /* Garante que o texto fique BRANCO */
+}
+/* ======================================= */
+/* ---- [NOVO] SEÇÃO DE SUPORTE (WHATSAPP) ---- */
+/* ======================================= */
+
+.support-cta-section {
+  background-color: #7e57c2; /* Fundo Roxo */
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  /* Ele fica entre a seção de Avaliações e o Rodapé */
+}
+.support-cta-section h2 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #fff; /* Título branco */
+  font-weight: 800;
+}
+.support-cta-section p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+/* Botão Verde do WhatsApp */
+.whatsapp-btn {
+  display: inline-block;
+  background-color: #25d366; /* Cor oficial do WhatsApp */
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 50px; /* Botão em formato de pílula */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.whatsapp-btn i {
+  margin-right: 0.75rem;
+  font-size: 1.3rem; /* Ícone um pouco maior */
+  vertical-align: middle; /* Alinha o ícone com o texto */
+}
+.whatsapp-btn:hover {
+  background-color: #1eae56; /* Verde mais escuro */
+  transform: scale(1.05); /* Efeito de "pular" */
+}
+/* ======================================= */
+/* ---- [NOVO] CARD LISTA DE ESPERA ---- */
+/* ======================================= */
+
+.waiting-list-card {
+  /* Fundo lilás bem suave (igual ao do painel) */
+  background-color: #f8f4ff;
+  border: 1px solid #e6dcf5;
+  border-left: 4px solid #7e57c2; /* Borda roxa */
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.08);
+}
+
+.waiting-list-card h4 {
+  color: #7e57c2;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.waiting-list-card p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* O Botão "Avise-me" */
+.waiting-list-card button {
+  background-color: #7e57c2;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px; /* Botão redondo */
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(126, 87, 194, 0.3);
+}
+
+.waiting-list-card button:hover {
+  background-color: #673ab7;
+  transform: translateY(-2px);
+}
+
+.waiting-list-card button i {
+  margin-right: 0.5rem;
+}
+/* ======================================= */
+/* ---- [NOVO] ÍCONE DE NOTIFICAÇÃO (CLIENTE) ---- */
+/* ======================================= */
+
+.notification-container {
+  position: relative;
+  margin-right: 1.5rem; /* Espaço do nome do usuário */
+  cursor: pointer;
+}
+
+.notification-icon {
+  font-size: 1.4rem;
+  color: #555;
+  transition: color 0.3s ease;
+}
+.notification-icon:hover {
+  color: #7e57c2;
+}
+
+/* O Ponto Vermelho */
+/* O Ponto Vermelho (Estilo Minimalista) */
+.notification-badge {
+  position: absolute;
+  top: 0; /* Ajuste fino da posição */
+  right: 0; /* Ajuste fino da posição */
+  width: 10px; /* Tamanho do pontinho */
+  height: 10px;
+  background-color: #ff5555; /* Vermelho */
+  border-radius: 50%;
+  border: 2px solid #ffffff; /* Borda branca para destacar */
+
+  /* Remove o texto/número antigo */
+  padding: 0;
+  min-width: 0;
+  font-size: 0;
+  color: transparent;
+}
+
+/* O Pop-up */
+.notification-popup {
+  display: none;
+  position: absolute;
+  top: 140%; /* Abaixo do ícone */
+  right: -10px; /* Alinhado à direita */
+  width: 320px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eee;
+  z-index: 1000;
+  overflow: hidden;
+}
+.notification-popup.show {
+  display: block;
+}
+
+.notification-header {
+  background-color: #f9f9f9;
+  padding: 0.8rem 1rem;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.notification-list {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: block;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.notification-item:hover {
+  background-color: #fdfdfd;
+}
+.notification-item strong {
+  display: block;
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+.notification-item p {
+  margin: 0;
+  color: #666;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.notification-item small {
+  display: block;
+  color: #999;
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+  text-align: right;
+}
+
+.notification-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+/* Cores das Redes Sociais no Perfil */
+
+.whatsapp-icon:hover {
+  color: #25d366 !important; /* Verde WhatsApp */
+}
+
+.instagram-icon:hover {
+  color: #e1306c !important; /* Rosa Instagram */
+}
+
+.facebook-icon:hover {
+  color: #1877f2 !important; /* Azul Facebook */
+}
+/* ======================================= */
+/* ---- [NOVO] BADGE DE FAVORITO (CARD) ---- */
+/* ======================================= */
+
+.card-favorite-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  color: #ff69b4; /* Rosa */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  z-index: 10; /* Fica na frente da imagem */
+}
+/* ======================================= */
+/* ---- SISTEMA DE AVALIAÇÃO (STARS) ---- */
+/* ======================================= */
+
+.rating-form {
+  display: flex;
+  flex-direction: row-reverse; /* Inverte para o hover funcionar do jeito certo */
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rating-form input {
+  display: none; /* Esconde os radio buttons */
+}
+
+.rating-form label {
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: #ddd; /* Cor da estrela vazia */
+  transition: color 0.2s;
+}
+
+/* Mágica do CSS: Pinta as estrelas anteriores ao passar o mouse ou selecionar */
+.rating-form label:hover,
+.rating-form label:hover ~ label,
+.rating-form input:checked ~ label {
+  color: #ffc107; /* Amarelo Ouro */
+}
+/* ======================================= */
+/* ---- LIGHTBOX DO PORTFÓLIO ---- */
+/* ======================================= */
+.lightbox {
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fixado na tela */
+  z-index: 1000; /* Acima de tudo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Permite scroll se a imagem for muito grande */
+  background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  flex-direction: column;
+}
+
+.lightbox.show {
+  display: flex; /* Mostra o lightbox */
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%; /* Limita o tamanho da imagem */
+  max-height: 90%; /* Limita o tamanho da imagem */
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Botão de Fechar */
+.close-lightbox {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close-lightbox:hover,
+.close-lightbox:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
+/* ---- Camada visual mobile-first do Agiliza ---- */
+:root {
+  --agiliza-ink: #183642;
+  --agiliza-muted: #60747b;
+  --agiliza-brand: #087f8c;
+  --agiliza-brand-dark: #05616b;
+  --agiliza-brand-soft: #e5f4f3;
+  --agiliza-accent: #ef8354;
+  --agiliza-surface: #ffffff;
+  --agiliza-page: #f4f8f8;
+  --agiliza-border: #dbe7e7;
+  --agiliza-radius: 12px;
+  --agiliza-shadow: 0 10px 30px rgba(24, 54, 66, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--agiliza-page);
+  color: var(--agiliza-ink);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--agiliza-brand);
+}
+
+.site-header {
+  min-height: 4.25rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--agiliza-border);
+  box-shadow: 0 4px 18px rgba(24, 54, 66, 0.07);
+}
+
+.site-header .logo {
+  color: var(--agiliza-ink);
+  font-size: 1.55rem;
+}
+.site-header .logo span {
+  color: var(--agiliza-brand);
+}
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.site-header nav > a {
+  margin-left: 0;
+  padding: 0.55rem 0.7rem;
+  color: var(--agiliza-muted);
+}
+.site-header nav > a:hover {
+  color: var(--agiliza-brand);
+}
+.dropdown-btn {
+  color: var(--agiliza-ink);
+  padding: 0.35rem;
+}
+.dropdown-btn:hover {
+  color: var(--agiliza-brand);
+}
+.dropdown-content {
+  border: 1px solid var(--agiliza-border);
+  box-shadow: var(--agiliza-shadow);
+}
+.dropdown-content a:hover {
+  background: var(--agiliza-brand-soft);
+  color: var(--agiliza-brand);
+}
+
+.site-container {
+  width: min(100% - 2rem, 1200px);
+  padding: 0;
+  margin: 1.25rem auto;
+}
+.site-container h1,
+.section-title,
+.perfil-details h1 {
+  color: var(--agiliza-ink);
+}
+.form-card,
+.profile-card,
+.perfil-section,
+.appointment-card,
+.business-card,
+.wizard-content,
+.how-it-works-section,
+.testimonial-card {
+  border: 1px solid var(--agiliza-border);
+  border-radius: var(--agiliza-radius);
+  box-shadow: var(--agiliza-shadow);
+}
+.form-button,
+.search-button,
+.login-button {
+  background: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+  border-radius: 9px;
+  min-height: 2.75rem;
+}
+.form-button:hover,
+.search-button:hover,
+.login-button:hover {
+  background: var(--agiliza-brand-dark);
+  border-color: var(--agiliza-brand-dark);
+}
+.search-input,
+.filter-select,
+.chat-form input[type="text"] {
+  border-color: var(--agiliza-border);
+  background: #fbfdfd;
+  border-radius: 9px;
+  min-height: 2.75rem;
+}
+.search-input:focus,
+.filter-select:focus,
+.chat-form input[type="text"]:focus {
+  border-color: var(--agiliza-brand);
+  box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.14);
+}
+.hero-section {
+  padding: 7rem 1rem 8rem;
+  background:
+    linear-gradient(135deg, rgba(8, 127, 140, 0.94), rgba(24, 54, 66, 0.96)),
+    url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070");
+}
+.hero-section h1 {
+  font-size: clamp(2rem, 8vw, 3.2rem);
+}
+.hero-section .form-button {
+  color: var(--agiliza-brand) !important;
+}
+.how-it-works-section {
+  margin: -3rem 0 2rem;
+  padding: 2rem 1rem;
+}
+.how-it-works-step i {
+  color: var(--agiliza-brand);
+  background: var(--agiliza-brand-soft);
+}
+.profile-layout,
+.business-grid,
+.card-grid,
+.equipe-grid {
+  grid-template-columns: 1fr;
+}
+.business-grid,
+.appointments-list,
+.card-grid {
+  gap: 1rem;
+}
+.business-card:hover,
+.testimonial-card:hover,
+.how-it-works-step:hover {
+  transform: translateY(-3px);
+}
+.form-group-file {
+  border-color: #b8d7d8;
+  background: var(--agiliza-brand-soft);
+}
+.file-input-label,
+.waiting-list-card button {
+  background: var(--agiliza-brand);
+}
+.file-input-label:hover,
+.waiting-list-card button:hover {
+  background: var(--agiliza-brand-dark);
+}
+.appointment-card {
+  border-left-color: var(--agiliza-brand);
+}
+.servico-preco,
+.agenda-item-hora,
+.step.active,
+.wizard-back-btn {
+  color: var(--agiliza-brand);
+}
+.step.active .step-icon,
+.time-slot-btn.selected,
+.bubble-mine {
+  background: var(--agiliza-brand);
+}
+.wizard-back-btn {
+  border-color: var(--agiliza-brand);
+}
+.bubble-theirs strong {
+  color: var(--agiliza-brand);
+}
+.site-footer {
+  border-top-color: var(--agiliza-border);
+  background: var(--agiliza-ink);
+  color: #d9e7e8;
+}
+.site-footer a {
+  color: #d9e7e8;
+}
+.support-cta-section,
+.preview-banner {
+  background: var(--agiliza-ink);
+}
+.waiting-list-card {
+  background: var(--agiliza-brand-soft);
+  border-color: #b8d7d8;
+  border-left-color: var(--agiliza-brand);
+}
+.waiting-list-card h4 {
+  color: var(--agiliza-brand-dark);
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    align-items: center;
+  }
+  .site-header nav > a {
+    font-size: 0.85rem;
+  }
+  .site-header .user-dropdown {
+    max-width: 10rem;
+  }
+  .dropdown-btn {
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .search-filter-bar {
+    padding: 1rem;
+  }
+  .search-group,
+  .filter-group {
+    min-width: 100%;
+  }
+  .search-button,
+  .form-button {
+    width: 100%;
+  }
+  .profile-card,
+  .wizard-content,
+  .perfil-section-body {
+    padding: 1rem;
+  }
+  .perfil-info-bar {
+    padding: 0 1rem 1.25rem;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .perfil-foto-wrapper {
+    margin: -2.5rem 0 0.75rem;
+    width: 96px;
+    height: 96px;
+  }
+  .perfil-details h1 {
+    margin-top: 0;
+    font-size: 1.65rem;
+  }
+  .servico-item-card,
+  .chat-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .appointment-card .card-body,
+  .appointment-card .card-actions {
+    min-width: 100%;
+    padding: 1rem;
+  }
+  .appointment-card .card-actions {
+    border-left: 0;
+    border-top: 1px solid var(--agiliza-border);
+  }
+  .chat-container {
+    width: calc(100% - 1rem);
+    height: calc(100vh - 6rem);
+    margin: 1rem auto;
+  }
+  .message-bubble {
+    max-width: 88%;
+  }
+  .chat-form {
+    padding: 0.75rem;
+  }
+  .chat-form button {
+    padding: 0 1rem;
+  }
+  .hero-section p {
+    font-size: 1rem;
+  }
+  .testimonials-section {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    margin-top: 2rem;
+  }
+  .profile-layout {
+    grid-template-columns: 2fr 1fr;
+  }
+  .business-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .equipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  .how-it-works-section {
+    padding: 3rem 2rem;
+  }
+}
+
+/* ---- Refinamento do diretório e compatibilidade da paleta atual ---- */
+.directory-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0 1.25rem;
+}
+.directory-heading h2 {
+  margin: 0.25rem 0 0.35rem;
+  color: var(--agiliza-ink);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+}
+.directory-heading p {
+  margin: 0;
+  color: var(--agiliza-muted);
+}
+.eyebrow {
+  color: var(--agiliza-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.directory-heading-icon {
+  display: grid;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid #b8d7d8;
+  border-radius: 50%;
+  color: var(--agiliza-brand);
+  background: var(--agiliza-brand-soft);
+}
+.search-filter-bar {
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--agiliza-border);
+  border-radius: var(--agiliza-radius);
+  box-shadow: 0 8px 24px rgba(24, 54, 66, 0.07);
+}
+.search-group,
+.filter-group {
+  min-width: 0;
+}
+.search-group label,
+.filter-group label {
+  color: var(--agiliza-ink);
+  font-size: 0.86rem;
+}
+.search-input,
+.filter-select {
+  color: var(--agiliza-ink);
+  background: #fff;
+}
+.search-button {
+  width: 4rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 5px 12px rgba(8, 127, 140, 0.2);
+}
+.business-grid {
+  margin-top: 1.5rem;
+}
+.empty-directory-state {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 34rem;
+  margin: 1.5rem auto 3rem;
+  padding: 2.5rem 1.5rem;
+  border: 1px dashed #b8d7d8;
+  border-radius: var(--agiliza-radius);
+  background: linear-gradient(145deg, #fff, var(--agiliza-brand-soft));
+  text-align: center;
+}
+.empty-directory-icon {
+  display: grid;
+  place-items: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  color: var(--agiliza-brand);
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(8, 127, 140, 0.12);
+  font-size: 1.5rem;
+}
+.empty-directory-state h3 {
+  margin: 0 0 0.4rem;
+  color: var(--agiliza-ink);
+}
+.empty-directory-state p {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--agiliza-muted);
+}
+.empty-directory-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  color: var(--agiliza-brand-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+.empty-directory-link:hover {
+  color: var(--agiliza-accent);
+}
+
+/* Os estilos antigos ainda chegam antes desta camada; estes estados mantêm a identidade atual. */
+.portfolio-item img:hover,
+.site-header nav a:hover,
+.dropdown-btn:hover,
+.dropdown-content a:hover,
+.form-group-file:hover,
+.perfil-action-icons .icon-btn:hover,
+.perfil-action-icons .icon-link:hover,
+.chat-header h1 a:hover,
+.footer-links a:hover,
+.notification-icon:hover {
+  color: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+}
+.search-input:focus,
+.filter-select:focus {
+  border-color: var(--agiliza-brand);
+}
+.search-button:hover,
+.file-input-label:hover,
+.form-button:hover,
+.chat-form button:hover,
+.waiting-list-card button:hover,
+.site-header nav a.form-button:hover {
+  background: var(--agiliza-brand-dark);
+  border-color: var(--agiliza-brand-dark);
+}
+.wizard-back-btn:hover,
+.preview-button:hover {
+  background: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+}
+.wizard-card-item:hover {
+  border-color: var(--agiliza-brand);
+}
+.time-slot-btn.selected,
+.step.active .step-icon {
+  background: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+}
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekday,
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+}
+.flatpickr-day:hover {
+  background: var(--agiliza-brand-soft);
+}
+.site-header nav a.form-button:hover {
+  color: #fff !important;
+}
+.hero-section .form-button:hover {
+  background: var(--agiliza-brand-soft) !important;
+  border-color: var(--agiliza-brand-soft) !important;
+  color: var(--agiliza-brand-dark) !important;
+}
+
+@media (max-width: 600px) {
+  .directory-heading {
+    align-items: flex-start;
+  }
+  .directory-heading-icon {
+    display: none;
+  }
+  .search-button {
+    width: 100%;
+  }
+  .empty-directory-state {
+    margin-bottom: 1.5rem;
+    padding: 2rem 1rem;
+  }
+}
+
+/* ---- Tela de meus agendamentos ---- */
+.appointments-page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+.appointments-page-heading h1 {
+  margin: 0.25rem 0 0.35rem;
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  letter-spacing: -0.03em;
+}
+.appointments-page-heading p {
+  margin: 0;
+  color: var(--agiliza-muted);
+}
+.eyebrow {
+  color: var(--agiliza-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.appointments-new-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--agiliza-brand);
+  border-radius: 9px;
+  color: var(--agiliza-brand-dark);
+  font-weight: 800;
+  text-decoration: none;
+  background: var(--agiliza-brand-soft);
+  transition: 0.2s ease;
+}
+.appointments-new-link:hover {
+  color: #fff;
+  background: var(--agiliza-brand);
+}
+.appointments-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+.appointments-section-heading .section-title {
+  flex: 1;
+  margin: 0 0 1rem;
+}
+.appointments-section-heading .section-title {
+  border-bottom-color: var(--agiliza-brand);
+}
+.appointments-count {
+  margin-bottom: 1rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  color: var(--agiliza-brand-dark);
+  background: var(--agiliza-brand-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.appointments-count.muted {
+  color: var(--agiliza-muted);
+  background: #edf2f2;
+}
+.appointments-list {
+  margin-top: 0;
+}
+.appointment-card {
+  border-left-width: 4px;
+  border-radius: var(--agiliza-radius);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.appointment-card:not(.is-past):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(24, 54, 66, 0.12);
+}
+.appointment-card .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #f6fbfb;
+  border-bottom-color: var(--agiliza-border);
+}
+.appointment-card .card-header h3 {
+  font-size: 1rem;
+}
+.appointment-card .card-header span {
+  color: var(--agiliza-brand-dark);
+  font-size: 1.05rem;
+}
+.appointment-card .card-body {
+  padding: 1.25rem;
+}
+.appointment-card .card-body strong {
+  color: var(--agiliza-ink);
+  font-size: 1.15rem;
+}
+.appointment-card .card-body p {
+  color: var(--agiliza-muted);
+}
+.appointment-card .card-body p:first-of-type {
+  margin-top: 0.35rem;
+}
+.appointment-card .card-body p.endereco {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+.appointment-card .card-body p.endereco::before {
+  content: "\f3c5";
+  color: var(--agiliza-brand);
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+.appointment-card .card-actions {
+  padding: 1.25rem;
+  border-left-color: var(--agiliza-border);
+}
+.action-btn {
+  min-height: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 8px;
+}
+.action-btn.chat-btn {
+  background: var(--agiliza-brand-soft);
+  border-color: #b8d7d8;
+  color: var(--agiliza-brand-dark);
+}
+.action-btn.chat-btn:hover {
+  background: var(--agiliza-brand);
+  border-color: var(--agiliza-brand);
+  color: #fff;
+}
+.action-btn.cancel-btn {
+  color: #b94b3d;
+  border-color: #e7b4ae;
+}
+.action-btn.cancel-btn:hover {
+  background: #c95a4b;
+  border-color: #c95a4b;
+}
+.action-btn.review-btn {
+  background: #fff3d1;
+  border: 1px solid #edcf82;
+  color: #8c6518;
+}
+.action-btn.review-btn:hover {
+  background: #d99b24;
+  border-color: #d99b24;
+  color: #fff;
+}
+.action-btn.rebook-btn {
+  background: var(--agiliza-brand);
+  border: 1px solid var(--agiliza-brand);
+  color: #fff;
+}
+.action-btn.rebook-btn:hover {
+  background: var(--agiliza-brand-dark);
+  border-color: var(--agiliza-brand-dark);
+}
+.status-badge {
+  margin-top: 0.9rem;
+  border-radius: 999px;
+  background: #edf2f2;
+  color: var(--agiliza-muted);
+}
+.status-badge.status-concluido,
+.status-badge.avaliado {
+  background: var(--agiliza-brand-soft);
+  color: var(--agiliza-brand-dark);
+}
+.status-badge.status-cancelado {
+  background: #fff0ed;
+  color: #b94b3d;
+}
+.empty-message {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-column: 1 / -1;
+  padding: 2.5rem 1.5rem;
+  border: 1px dashed #b8d7d8;
+  background: linear-gradient(145deg, #fff, var(--agiliza-brand-soft));
+  color: var(--agiliza-muted);
+}
+.empty-message-icon {
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  margin-bottom: 0.8rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--agiliza-brand);
+  font-size: 1.35rem;
+  box-shadow: 0 5px 15px rgba(8, 127, 140, 0.1);
+}
+.empty-message h3 {
+  margin: 0 0 0.35rem;
+  color: var(--agiliza-ink);
+}
+.empty-message p {
+  margin: 0;
+}
+.empty-message.compact {
+  padding: 2rem 1rem;
+}
+.appointments-empty-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  color: var(--agiliza-brand-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+.appointments-empty-link:hover {
+  color: var(--agiliza-accent);
+}
+
+/* ---- Tela de perfil do cliente ---- */
+.profile-layout {
+  align-items: stretch;
+  gap: 1.25rem;
+}
+.profile-editor-card,
+.profile-layout > .profile-card {
+  height: auto;
+  min-width: 0;
+}
+.profile-card h3 {
+  color: var(--agiliza-ink);
+}
+.profile-editor-card form {
+  width: min(100%, 620px);
+}
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  align-items: start;
+  min-width: 0;
+}
+.profile-photo-field {
+  margin-bottom: 1rem;
+}
+.profile-photo-field > label {
+  margin-bottom: 0.55rem;
+}
+.profile-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.profile-fields-grid .form-group {
+  min-width: 0;
+}
+.profile-editor-card form > .form-button {
+  margin-top: 0.15rem;
+}
+.form-group-file {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 5.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px dashed #9ccfd1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--agiliza-brand-soft), #f8fcfc);
+}
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 9px;
+  background: var(--agiliza-brand);
+  color: #fff !important;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.file-input-label::before {
+  content: "\f093";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+.file-input-label:hover {
+  background: var(--agiliza-brand-dark);
+  transform: translateY(-1px);
+}
+.file-input-filename {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  color: var(--agiliza-muted);
+  font-size: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-input-filename i {
+  color: var(--agiliza-brand);
+}
+.preview-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+  padding: 0.65rem;
+  border: 1px solid var(--agiliza-border);
+  background: #fbfdfd;
+}
+.preview-container img.preview-perfil {
+  width: 56px;
+  height: 56px;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(24, 54, 66, 0.12);
+}
+.device-info {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 10rem;
+  overflow: hidden;
+  border: 1px solid var(--agiliza-border);
+  background: #f8fbfb;
+}
+.device-info .fa-desktop {
+  color: var(--agiliza-brand);
+}
+.device-details {
+  min-width: 0;
+  overflow: hidden;
+}
+.device-details strong {
+  display: block;
+  color: var(--agiliza-ink);
+}
+.device-details span {
+  display: block;
+  max-width: 100%;
+  color: var(--agiliza-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.security-action-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--agiliza-border);
+  border-radius: var(--agiliza-radius);
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(24, 54, 66, 0.06);
+}
+.security-action-card > div {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.security-action-card h3 {
+  margin: 0;
+  color: var(--agiliza-ink);
+  font-size: 1rem;
+}
+.security-action-card p {
+  margin: 0.2rem 0 0;
+  color: var(--agiliza-muted);
+  font-size: 0.88rem;
+}
+.security-action-icon {
+  display: grid;
+  flex: 0 0 2.5rem;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: var(--agiliza-brand);
+  background: var(--agiliza-brand-soft);
+}
+.outline-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.65rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--agiliza-brand);
+  border-radius: 9px;
+  color: var(--agiliza-brand-dark);
+  background: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.outline-button:hover {
+  color: #fff;
+  background: var(--agiliza-brand);
+}
+.password-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.password-modal.is-open {
+  display: flex;
+}
+.password-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 54, 66, 0.58);
+  backdrop-filter: blur(3px);
+}
+.password-modal-dialog {
+  position: relative;
+  width: min(100%, 32rem);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1.5rem;
+  border: 1px solid var(--agiliza-border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(24, 54, 66, 0.25);
+  animation: password-modal-in 0.2s ease-out;
+}
+.password-modal-dialog h2 {
+  margin: 0.25rem 0 1.25rem;
+  color: var(--agiliza-ink);
+}
+.password-modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  color: var(--agiliza-muted);
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.password-modal-close:hover {
+  color: var(--agiliza-brand-dark);
+  background: var(--agiliza-brand-soft);
+}
+.modal-kicker {
+  color: var(--agiliza-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+body.modal-open {
+  overflow: hidden;
+}
+@keyframes password-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .profile-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .form-group-file {
+    align-items: stretch;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .file-input-label {
+    width: 100%;
+  }
+  .file-input-filename {
+    max-width: 100%;
+  }
+  .device-info {
+    height: auto;
+    min-height: 0;
+  }
+  .security-action-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .outline-button {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .appointments-page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  .appointments-new-link {
+    width: 100%;
+    justify-content: center;
+  }
+  .appointments-section-heading {
+    align-items: flex-start;
+  }
+  .appointments-section-heading .section-title {
+    font-size: 1.35rem;
+  }
+  .appointments-count {
+    margin-top: 0.1rem;
+  }
+  .appointment-card .card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .appointment-card .card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .appointment-card .card-actions .action-btn {
+    width: 100%;
+  }
+}

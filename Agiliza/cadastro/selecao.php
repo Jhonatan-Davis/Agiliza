@@ -1,10 +1,11 @@
+<?php require_once __DIR__ . '/../config/bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escolha seu Perfil - Agiliza</title>
-    <link rel="stylesheet" href="../login/style_login.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/views/login/style_login.css">
     
     <style>
         .login-container {
@@ -64,7 +65,7 @@
         </a>
         
         <div class="login-links">
-            <p>Já tem uma conta? <a href="../login/login.php">Faça login</a></p>
+            <p>Já tem uma conta? <a href="<?= BASE_URL ?>/views/login/login.php">Faça login</a></p>
         </div>
     </div>
 

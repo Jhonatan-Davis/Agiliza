@@ -1,0 +1,558 @@
+/* ---- style_login.css (TEMA LIGHT) ---- */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 380px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.login-container h1 {
+  text-align: center;
+  color: #1a1a2e;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.login-container h1 span {
+  color: #7e57c2;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #333;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #7e57c2;
+  box-shadow: 0 0 8px rgba(126, 87, 194, 0.5);
+}
+
+/* ---- Botão ---- */
+.login-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #7e57c2;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #673ab7;
+}
+
+/* ---- Links ---- */
+.login-links {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login-links a {
+  color: #7e57c2;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  font-weight: bold;
+}
+
+.login-links a:hover {
+  color: #673ab7;
+}
+
+.error-message {
+  background-color: #ff3333;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ======================================= */
+/* ---- ÍCONE DE MOSTRAR SENHA (OLHO) ---- */
+/* ======================================= */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Dá espaço para o ícone não ficar em cima do texto */
+.password-wrapper input {
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.toggle-password:hover {
+  color: #7e57c2;
+}
+
+/* ======================================= */
+/* ---- REMOVER SETAS DO NAVEGADOR ---- */
+/* ======================================= */
+
+/* Remove setas de histórico/datalist do Chrome/Edge */
+input::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Remove setas de número */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Base mobile-first do fluxo de acesso */
+:root {
+  --agiliza-ink: #183642;
+  --agiliza-muted: #60747b;
+  --agiliza-brand: #087f8c;
+  --agiliza-brand-dark: #05616b;
+  --agiliza-soft: #e5f4f3;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  min-height: 100svh;
+  padding: 1rem;
+  background: linear-gradient(145deg, #e5f4f3 0%, #f6faf9 55%, #fff4ed 100%);
+  color: var(--agiliza-ink);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+.login-container {
+  width: min(100%, 28rem);
+  padding: 1.5rem;
+  border: 1px solid rgba(8, 127, 140, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(24, 54, 66, 0.12);
+}
+.login-container h1 {
+  color: var(--agiliza-ink);
+  font-size: 2rem;
+}
+.login-container h1 span {
+  color: var(--agiliza-brand);
+}
+.form-group input {
+  min-height: 2.9rem;
+  border-color: #cfe0e0;
+  background: #fbfdfd;
+  border-radius: 9px;
+}
+.form-group input:focus {
+  border-color: var(--agiliza-brand);
+  box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.14);
+}
+.login-button {
+  min-height: 2.9rem;
+  background: var(--agiliza-brand);
+  border-radius: 9px;
+}
+.login-button:hover {
+  background: var(--agiliza-brand-dark);
+}
+.login-links a {
+  color: var(--agiliza-brand);
+}
+.error-message {
+  background: #c84b4b;
+  border-radius: 9px;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding: 2rem;
+  }
+  .login-container {
+    padding: 2.5rem;
+  }
+}
+
+/* ---- Fluxo de configuracao do negocio ---- */
+.business-setup {
+  width: min(100%, 34rem);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.96);
+}
+.setup-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+  color: var(--agiliza-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.setup-kicker i {
+  font-size: 0.9rem;
+}
+.business-setup h1 {
+  margin-bottom: 0.45rem;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  letter-spacing: -0.03em;
+}
+.setup-subtitle {
+  margin: 0;
+  color: var(--agiliza-muted);
+  text-align: center;
+}
+.setup-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1.75rem 0 1.5rem;
+}
+.setup-progress-dot {
+  display: grid;
+  flex: 0 0 1.8rem;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--agiliza-brand);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+.setup-progress-line {
+  height: 1px;
+  flex: 1;
+  background: #cfe0e0;
+}
+.setup-progress-label {
+  color: var(--agiliza-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.business-setup-form .form-group {
+  margin-bottom: 1.15rem;
+}
+.business-setup-form .form-group label {
+  margin-bottom: 0.45rem;
+  color: var(--agiliza-ink);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+.business-setup-form input,
+.business-setup-form select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #cfe0e0;
+  border-radius: 10px;
+  outline: 0;
+  color: var(--agiliza-ink);
+  background-color: #fbfdfd;
+  font: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+.business-setup-form select {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--agiliza-brand) 50%),
+    linear-gradient(135deg, var(--agiliza-brand) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.1rem) 1.25rem,
+    calc(100% - 0.8rem) 1.25rem;
+  background-size:
+    0.35rem 0.35rem,
+    0.35rem 0.35rem;
+  background-repeat: no-repeat;
+}
+.business-setup-form input::placeholder {
+  color: #789096;
+}
+.business-setup-form input:focus,
+.business-setup-form select:focus {
+  border-color: var(--agiliza-brand);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.13);
+}
+.business-setup-form select:disabled {
+  cursor: not-allowed;
+  color: #91a0a3;
+  background-color: #f1f5f5;
+}
+.setup-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 16px rgba(8, 127, 140, 0.18);
+}
+.setup-submit i {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+.setup-submit:hover i {
+  transform: translateX(3px);
+}
+
+@media (max-width: 520px) {
+  .business-setup {
+    border-radius: 16px;
+  }
+  .setup-progress-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* ---- Wizard de configuracao ---- */
+.business-setup {
+  max-width: 34rem;
+}
+.business-setup-form {
+  margin-top: 0.25rem;
+}
+.setup-progress {
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+.setup-progress-step {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: #91a0a3;
+}
+.setup-progress-step small {
+  font-size: 0.68rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.setup-progress-step.active,
+.setup-progress-step.completed {
+  color: var(--agiliza-brand-dark);
+}
+.setup-progress-dot {
+  border: 2px solid #cfe0e0;
+  color: var(--agiliza-muted);
+  background: #fff;
+}
+.setup-progress-step.active .setup-progress-dot,
+.setup-progress-step.completed .setup-progress-dot {
+  border-color: var(--agiliza-brand);
+  color: #fff;
+  background: var(--agiliza-brand);
+}
+.setup-progress-step.completed .setup-progress-dot::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+.setup-progress-step.completed .setup-progress-dot {
+  font-size: 0;
+}
+.setup-progress-line {
+  margin-top: 0.9rem;
+  background: #cfe0e0;
+}
+.setup-panel[hidden] {
+  display: none;
+}
+.setup-panel {
+  animation: setup-panel-in 0.22s ease-out;
+}
+.setup-panel-kicker {
+  color: var(--agiliza-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.setup-panel h2 {
+  margin: 0.45rem 0 0.3rem;
+  color: var(--agiliza-ink);
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+.setup-panel-description {
+  margin: 0 0 1.4rem;
+  color: var(--agiliza-muted);
+  font-size: 0.9rem;
+}
+.setup-actions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.setup-actions .login-button {
+  width: 100%;
+  margin: 0;
+}
+.setup-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.9rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #cfe0e0;
+  border-radius: 9px;
+  color: var(--agiliza-muted);
+  background: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.setup-back:hover {
+  border-color: var(--agiliza-brand);
+  color: var(--agiliza-brand-dark);
+  background: var(--agiliza-soft);
+}
+.setup-reference-field label span {
+  color: var(--agiliza-muted);
+  font-weight: 400;
+}
+.cep-input-row {
+  position: relative;
+}
+.cep-input-row input {
+  padding-right: 10rem;
+}
+.cep-status {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+  color: var(--agiliza-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  pointer-events: none;
+}
+.cep-status.loading {
+  color: var(--agiliza-brand);
+}
+.cep-status.success {
+  color: #237a5a;
+}
+.cep-status.invalid {
+  color: #b94b3d;
+}
+.field-hint {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--agiliza-muted);
+  font-size: 0.75rem;
+}
+.address-fields-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7rem;
+  column-gap: 0.75rem;
+}
+.address-street-field {
+  grid-column: 1 / 2;
+}
+.address-street-field + .form-group {
+  grid-column: 2 / 3;
+}
+.address-fields-grid .form-group:nth-child(3) {
+  grid-column: 1 / 2;
+}
+.address-fields-grid .form-group:nth-child(4) {
+  grid-column: 2 / 3;
+}
+@keyframes setup-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .setup-progress-step small {
+    font-size: 0.62rem;
+  }
+  .setup-actions {
+    grid-template-columns: 1fr;
+  }
+  .setup-back {
+    order: 2;
+  }
+  .cep-input-row input {
+    padding-right: 0.9rem;
+  }
+  .cep-status {
+    position: static;
+    display: block;
+    margin-top: 0.35rem;
+    transform: none;
+  }
+  .address-fields-grid {
+    grid-template-columns: 1fr;
+  }
+  .address-street-field,
+  .address-street-field + .form-group,
+  .address-fields-grid .form-group:nth-child(3),
+  .address-fields-grid .form-group:nth-child(4) {
+    grid-column: 1;
+  }
+}

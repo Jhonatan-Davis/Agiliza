@@ -1,8 +1,16 @@
 <?php
+require_once __DIR__ . '/../config/bootstrap.php';
 session_start();
+
+$tipo_cadastro = $_GET['tipo'] ?? '';
+if (!in_array($tipo_cadastro, ['cliente', 'dono'], true)) {
+    header("Location: " . BASE_URL . "/cadastro/selecao.php");
+    exit();
+}
+
 // Se já estiver logado, redireciona
 if (isset($_SESSION['usuario_id'])) {
-    header("Location: ../index.php");
+    header("Location: " . PUBLIC_URL . "/index.php");
     exit();
 }
 ?>
@@ -12,8 +20,8 @@ if (isset($_SESSION['usuario_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta - Agiliza</title>
-    <link rel="stylesheet" href="../login/style_login.css"> 
-    <link rel="shortcut icon" href="../uploads/logo_agiliza.png" type="image/png">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/views/login/style_login.css"> 
+    <link rel="shortcut icon" href="<?= PUBLIC_URL ?>/uploads/logo_agiliza.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilo extra para os requisitos de senha */
@@ -51,12 +59,18 @@ if (isset($_SESSION['usuario_id'])) {
 <body>
     <div class="login-container" style="max-width: 400px;">
         <div style="text-align: center; margin-bottom: 10px;">
-            <img src="../uploads/logo_agiliza.png" alt="Agiliza" style="width: 60px;">
+            <img src="<?= PUBLIC_URL ?>/uploads/logo_agiliza.png" alt="Agiliza" style="width: 60px;">
         </div>
 
         <h1>Crie sua Conta</h1>
         
         <?php
+            $erro_cadastro = $_SESSION['erro_cadastro'] ?? null;
+            unset($_SESSION['erro_cadastro']);
+
+            if ($erro_cadastro) {
+                echo '<div class="error-message">' . htmlspecialchars($erro_cadastro) . '</div>';
+            }
             if (isset($_GET['erro'])) {
                 $erro = $_GET['erro'];
                 $msg = "Erro ao cadastrar!";
@@ -68,6 +82,7 @@ if (isset($_SESSION['usuario_id'])) {
         ?>
 
         <form action="processar_cadastro.php" method="POST" autocomplete="off">
+            <input type="hidden" name="tipo_usuario" value="<?= htmlspecialchars($tipo_cadastro) ?>">
             
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
@@ -113,7 +128,7 @@ if (isset($_SESSION['usuario_id'])) {
         </form>
         
         <div class="login-links">
-            <a href="../login/login.php">Já tem uma conta? Faça Login</a>
+            <a href="<?= BASE_URL ?>/views/login/login.php">Já tem uma conta? Faça Login</a>
         </div>
     </div>
 
