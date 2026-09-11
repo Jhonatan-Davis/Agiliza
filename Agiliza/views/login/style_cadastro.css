@@ -1,0 +1,47 @@
+:root{--agiliza-brand:#087f8c;--agiliza-brand-dark:#05616b;--agiliza-ink:#183642;--agiliza-muted:#60747b;--agiliza-soft:#e5f4f3}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{min-height:100svh;padding:1rem;background:linear-gradient(145deg,#e5f4f3 0%,#f6faf9 55%,#fff4ed 100%);color:var(--agiliza-ink);font-family:"DM Sans","Segoe UI",sans-serif}
+.business-setup{width:min(100%,34rem);margin:1rem auto;padding:clamp(1.5rem,5vw,2.5rem);border:1px solid rgba(8,127,140,.15);border-radius:20px;background:rgba(255,255,255,.96);box-shadow:0 18px 45px rgba(24,54,66,.12)}
+.setup-kicker{display:flex;align-items:center;justify-content:center;gap:.45rem;margin-bottom:.7rem;color:var(--agiliza-brand);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.business-setup h1{margin:0 0 .45rem;text-align:center;font-size:clamp(2rem,7vw,2.6rem);letter-spacing:-.03em}
+.setup-subtitle{margin:0;color:var(--agiliza-muted);text-align:center}
+.setup-progress{display:flex;align-items:flex-start;gap:.45rem;margin:1.75rem 0 1.5rem}
+.setup-progress-step{display:flex;align-items:center;flex-direction:column;gap:.35rem;color:#91a0a3}
+.setup-progress-step small{font-size:.68rem;font-weight:800;white-space:nowrap}
+.setup-progress-step.active,.setup-progress-step.completed{color:var(--agiliza-brand-dark)}
+.setup-progress-dot{display:grid;flex:0 0 1.8rem;place-items:center;width:1.8rem;height:1.8rem;border:2px solid #cfe0e0;border-radius:50%;color:var(--agiliza-muted);background:#fff;font-size:.78rem;font-weight:800}
+.setup-progress-step.active .setup-progress-dot,.setup-progress-step.completed .setup-progress-dot{border-color:var(--agiliza-brand);color:#fff;background:var(--agiliza-brand)}
+.setup-progress-step.completed .setup-progress-dot::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900}
+.setup-progress-step.completed .setup-progress-dot{font-size:0}
+.setup-progress-line{height:1px;flex:1;margin-top:.9rem;background:#cfe0e0}
+.setup-panel[hidden]{display:none}
+.setup-panel{animation:setup-panel-in .22s ease-out}
+.setup-panel-kicker{color:var(--agiliza-brand);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.setup-panel h2{margin:.45rem 0 .3rem;color:var(--agiliza-ink);font-size:1.35rem;letter-spacing:-.02em}
+.setup-panel-description{margin:0 0 1.4rem;color:var(--agiliza-muted);font-size:.9rem}
+.business-setup-form .form-group{margin-bottom:1.15rem}
+.business-setup-form .form-group label{margin-bottom:.45rem;color:var(--agiliza-ink);font-size:.86rem;font-weight:700}
+.business-setup-form input{width:100%;min-height:3rem;padding:.75rem .9rem;border:1px solid #cfe0e0;border-radius:10px;outline:0;color:var(--agiliza-ink);background:#fbfdfd;font:inherit;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.business-setup-form input::placeholder{color:#789096}
+.business-setup-form input:focus{border-color:var(--agiliza-brand);background:#fff;box-shadow:0 0 0 3px rgba(8,127,140,.13)}
+.password-wrapper{position:relative;width:100%}
+.password-wrapper input{padding-right:40px}
+.toggle-password{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:1rem;z-index:2}
+.toggle-password:hover{color:var(--agiliza-brand)}
+#requisitos-senha{display:none;background:#f9f9f9;padding:10px;margin-top:5px;border-radius:6px;border:1px solid #eee;font-size:.85rem}
+#requisitos-senha h4{margin:0 0 5px;color:#333;font-size:.9rem}
+#requisitos-senha ul{list-style:none;padding:0;margin:0}
+#requisitos-senha li{margin-bottom:3px;color:#ff5555;transition:color .3s ease}
+#requisitos-senha li.valido{color:#4CAF50;text-decoration:line-through;opacity:.7}
+.setup-actions{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.75rem;margin-top:1.5rem}
+.setup-actions .login-button{width:100%;margin:0;min-height:2.9rem;background:var(--agiliza-brand);border:none;border-radius:9px;color:#fff;font:inherit;font-size:1.1rem;font-weight:700;cursor:pointer}
+.setup-actions .login-button:hover{background:var(--agiliza-brand-dark)}
+.setup-back{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:2.9rem;padding:.7rem .85rem;border:1px solid #cfe0e0;border-radius:9px;color:var(--agiliza-muted);background:#fff;font:inherit;font-weight:800;cursor:pointer}
+.setup-back:hover{border-color:var(--agiliza-brand);color:var(--agiliza-brand-dark);background:var(--agiliza-soft)}
+.setup-review{background:#f8fafc;border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.setup-review .review-item{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #e2e8f0;font-size:.9rem}
+.setup-review .review-item:last-child{border-bottom:none}
+.error-message{background:#c84b4b;color:#fff;padding:.75rem;border-radius:9px;text-align:center;margin-bottom:1rem}
+@keyframes setup-panel-in{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:520px){.business-setup{border-radius:16px}.setup-progress-step small{font-size:.62rem}.setup-actions{grid-template-columns:1fr}.setup-back{order:2}.setup-review{padding:1rem}}

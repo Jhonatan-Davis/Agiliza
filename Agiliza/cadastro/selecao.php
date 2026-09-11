@@ -5,69 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escolha seu Perfil - Agiliza</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/views/login/style_login.css">
-    
-    <style>
-        .login-container {
-            /* Um pouco maior para caber os botões */
-            max-width: 450px; 
-        }
-        .selecao-botao {
-            display: block; /* Faz o link ocupar a linha inteira */
-            text-decoration: none;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            transition: transform 0.2s ease;
-        }
-        .selecao-botao:hover {
-            transform: scale(1.03); /* Efeito de "levantar" */
-        }
-        
-        /* O botão "Cliente" (cor principal) */
-        .btn-cliente {
-            background-color: #7E57C2; /* Nosso Roxo */
-            color: white;
-        }
-        
-        /* O botão "Dono" (cor secundária) */
-        .btn-dono {
-            background-color: #333; /* Um cinza escuro */
-            color: #e0e0e0;
-            border: 1px solid #7E57C2; /* Borda com a cor principal */
-        }
-        
-        .login-links p {
-            color: #b0b0b0; /* Texto de ajuda */
-        }
-    </style>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/views/login/style_selecao.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <h1>Como você quer usar o Agiliza?</h1>
+<div class="selection-container">
 
-        <p style="text-align:center; color: #b0b0b0; margin-top: -1rem; margin-bottom: 2rem;">
-            Escolha seu tipo de conta para começarmos.
-        </p>
-        
-        <a href="cadastro.php?tipo=cliente" class="selecao-botao btn-cliente">
-            Sou Cliente
-            <span style="display:block; font-size: 0.8rem; font-weight: normal;">Quero agendar horários em negócios.</span>
-        </a>
-        
-        <a href="cadastro.php?tipo=dono" class="selecao-botao btn-dono">
-            Sou Dono(a) de um Negócio
-            <span style="display:block; font-size: 0.8rem; font-weight: normal;">Quero gerenciar minha agenda e clientes.</span>
-        </a>
-        
-        <div class="login-links">
-            <p>Já tem uma conta? <a href="<?= BASE_URL ?>/views/login/login.php">Faça login</a></p>
+    <!-- Área Principal com Divisão Diagonal -->
+    <div class="selection-main">
+
+        <!-- LADO CLIENTE -->
+        <div class="side-client">
+            <div class="side-content">
+                <div class="illustration-container">
+                    <img src="<?= PUBLIC_URL ?>/uploads/cliente-selecao.png" alt="Ilustração de cliente agendando serviço" class="card-img">
+                </div>
+
+                <h1 class="side-title">Sou Cliente</h1>
+                <p class="side-description">Encontre profissionais, serviços e agende seus horários. <strong>Tudo ao seu alcance.</strong></p>
+
+                <div class="card-actions">
+                    <a href="cadastro.php?tipo=cliente" class="btn-action btn-primary-custom">
+                        Continuar como Cliente
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
+
+        <!-- LADO DONO DE NEGÓCIO -->
+        <div class="side-business">
+            <div class="side-content">
+                <div class="illustration-container">
+                    <img src="<?= PUBLIC_URL ?>/uploads/dono-selecao.png" alt="Ilustração de dono de negócio gerenciando agenda" class="card-img">
+                </div>
+
+                <h1 class="side-title">Sou Dono de Negócio</h1>
+                <p class="side-description">Cadastre seu negócio, gerencie clientes e organize sua agenda. <strong>Simplify sua rotina.</strong></p>
+
+                <div class="card-actions">
+                    <a href="cadastro.php?tipo=dono" class="btn-action btn-primary-custom">
+                        Cadastrar Meu Negócio
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Footer com pílula flutuante -->
+    <div class="footer-login-container">
+        <span class="footer-text">Já possui uma conta? <a href="<?= BASE_URL ?>/views/login/login.php">Entrar</a></span>
+    </div>
+
+</div>
 
 </body>
 </html>

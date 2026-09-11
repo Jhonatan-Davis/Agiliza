@@ -4,7 +4,7 @@ require_once dirname(__DIR__, 2) . '/config/bootstrap.php';
 
 // --- Porteiro ---
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: " . BASE_URL . "/views/login/login.php");
+    header("Location: " . BASE_URL . "/cadastro/selecao.php");
     exit();
 }
 

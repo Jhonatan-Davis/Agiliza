@@ -220,7 +220,7 @@ if (!$visitante) {
             <div class="business-grid">
                 <?php if (count($negocios) > 0): ?>
                     <?php foreach ($negocios as $negocio): ?>
-                        <a href="perfil_negocio.php?id=<?php echo $negocio['id']; ?>" class="business-card">
+                        <a href="<?= BASE_URL ?>/views/cliente/perfil_negocio.php?id=<?php echo $negocio['id']; ?>" class="business-card">
                             <div class="card-capa" <?php if (!empty($negocio['capa_url'])): ?> style="background-image: url('<?php echo htmlspecialchars($negocio['capa_url']); ?>');" <?php endif; ?>>
                                 <?php if ($negocio['e_favorito']): ?>
                                     <span class="card-favorite-badge" title="Favorito"><i class="fas fa-heart"></i></span>

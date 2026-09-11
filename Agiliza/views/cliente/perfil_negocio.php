@@ -53,13 +53,12 @@ try {
     $nota_media = $stats['media'] ? round($stats['media'], 1) : 0;
     $total_avaliacoes = $stats['total'];
 
-    // 6. Buscar as Últimas Avaliações (Comentários)
     $stmt_reviews = $pdo->prepare(
-        "SELECT a.nota, a.comentario, a.data_avaliacao, u.nome 
+        "SELECT a.nota, a.comentario, a.criado_em as data_avaliacao, u.nome 
          FROM avaliacoes a
          JOIN usuarios u ON a.id_cliente = u.id
          WHERE a.id_negocio = :id 
-         ORDER BY a.data_avaliacao DESC LIMIT 5"
+         ORDER BY a.criado_em DESC LIMIT 5"
     );
     $stmt_reviews->execute(['id' => $id_negocio_da_pagina]);
     $reviews = $stmt_reviews->fetchAll(PDO::FETCH_ASSOC);
